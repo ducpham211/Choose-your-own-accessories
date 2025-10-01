@@ -5,6 +5,8 @@ import "../../../src/App.css";
 import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 import { LogOut } from "lucide-react";
+import { SearchBar } from "../../products/components/SearchBar";
+import { User } from "lucide-react";
 export const Header = () => {
   const { signOut } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -16,7 +18,10 @@ export const Header = () => {
 
   return (
     <header className="header">
-      <div className="logo">Fit Zone</div>
+      <Link to="/" className="logo">
+        Fit Zone
+      </Link>
+      <SearchBar />
       <nav className="nav">
         <Link to="/">Home</Link>
         <Link to="/shop">Shop</Link>
@@ -24,6 +29,9 @@ export const Header = () => {
         <Link to="/contact">Contact</Link>
       </nav>
       <div className="header-actions">
+        <Link to="/user" className="user-icon">
+          <User />
+        </Link>
         <Link to="/cart/items" className="cart-icon">
           <ShoppingCart />
         </Link>

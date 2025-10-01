@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import axios from "axios";
 import { fetchProductCard } from "../services/productApi";
 import { ShoppingCart, Heart, Share2 } from "lucide-react";
 import { addToCart } from "../../cart/services/cartApi";
-
+import { ReviewPage } from "../../review/components/reviewPage";
 export const ProductCard = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -70,7 +69,6 @@ export const ProductCard = () => {
 
   return (
     <div className="product-detail-container">
-      {/* Floating decorative elements */}
       <div className="detail-floating-elements">
         <div className="detail-floating-dot"></div>
         <div className="detail-floating-dot"></div>
@@ -154,6 +152,10 @@ export const ProductCard = () => {
           </div>
         </div>
       </div>
+      <div className="product-review-section">
+        <ReviewPage productId={id} />
+      </div>
     </div>
   );
 };
+//ProductCard.jsx

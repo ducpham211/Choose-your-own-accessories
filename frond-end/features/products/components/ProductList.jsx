@@ -24,7 +24,6 @@ export const ProductList = () => {
 
   if (loading) return <p className="loading-text">Loading Products...</p>;
 
-  // ProductList.jsx — GIỮ NGUYÊN PHẦN JS, CHỈ THÊM CHỮ TRÊN DECAL
   return (
     <div className="product-list-container">
       <h2 className="product-list-title">FitZone</h2>
@@ -86,3 +85,4 @@ export const ProductList = () => {
     </div>
   );
 };
+//ProductList.jsx

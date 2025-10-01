@@ -19,3 +19,18 @@ export const fetchProductList = async () => {
     throw new Error(`Failed to get list of productW ${error.message}`);
   }
 };
+
+export const searchProducts = async (query) => {
+  try {
+    console.log(`Frontend search query: ${query}`);
+    const response = await axios.get(
+      `http://localhost:3000/api/products/search?q=${encodeURIComponent(query)}`
+    );
+    console.log(`Frontend received: ${JSON.stringify(response.data)}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Frontend search error: ${error.message}`);
+    throw new Error(`Failed to search products: ${error.message}`);
+  }
+};
+//productApi.jsx

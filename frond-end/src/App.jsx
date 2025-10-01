@@ -10,6 +10,7 @@ import { Footer } from "../features/shared/components/Footer";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { OrderList } from "../features/orders/components/OrderList";
+import { UserPage } from "../features/auth/components/UserPage";
 const AppContent = () => {
   const { user } = useContext(AuthContext);
 
@@ -22,6 +23,7 @@ const AppContent = () => {
           path="/products/:id"
           element={user ? <ProductCard /> : <AuthForm />}
         />
+        <Route path="/user" element={user ? <UserPage /> : <AuthForm />} />
         <Route
           path="/cart/items"
           element={user ? <CartList /> : <AuthForm />}

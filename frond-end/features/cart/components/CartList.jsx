@@ -31,7 +31,6 @@ export const CartList = () => {
       setSuccess("Thanh toán thành công! 🎉");
       setError("");
 
-      // Clear success message after 3 seconds
       setTimeout(() => setSuccess(""), 3000);
     } catch (error) {
       console.error("Failed to create order:", error);

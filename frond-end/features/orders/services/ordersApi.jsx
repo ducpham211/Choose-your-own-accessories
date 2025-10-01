@@ -14,7 +14,7 @@ export const checkoutCart = async () => {
 
     const response = await axios.post(
       "http://localhost:3000/api/order",
-      {}, // không cần body
+      {},
       { headers: { Authorization: `Bearer ${session.access_token}` } }
     );
     return response.data.order;

@@ -7,10 +7,10 @@ export const OrderList = () => {
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const hasProcessed = useRef(false); // 👈 cờ để đảm bảo chỉ chạy 1 lần
+  const hasProcessed = useRef(false);
 
   useEffect(() => {
-    if (hasProcessed.current) return; // 👈 đã xử lý rồi thì thoát
+    if (hasProcessed.current) return;
     hasProcessed.current = true;
 
     const processCheckout = async () => {
