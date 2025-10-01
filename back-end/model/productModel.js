@@ -52,3 +52,25 @@ export const createProduct = async (
     throw new Error(`Failed to create product: ${error.message}`);
   }
 };
+
+export const searchProducts = async (query) => {
+  if (!query) return [];
+
+  console.log(`Executing search for query: ${query}`);
+
+  const { data, error } = await supabase
+    .from("products")
+    .select("*")
+    .ilike("name", `%${query}%`)
+    .limit(8);
+
+  if (error) {
+    console.error(`Supabase error: ${error.message}`);
+    throw new Error(error.message);
+  }
+
+  console.log(`Products found: ${JSON.stringify(data)}`);
+  return data || [];
+};
+
+//productModel.js

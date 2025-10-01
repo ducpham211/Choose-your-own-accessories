@@ -3,12 +3,13 @@ import authRoutes from "./authRoutes.js";
 import cartRoutes from "./cartRoutes.js";
 import orderRoutes from "./orderRoutes.js";
 import productRoutes from "./productRoutes.js";
-
+import reviewRoutes from "./reviewRoutes.js";
 const router = Router();
 
 router.use("/auth", authRoutes);
 router.use("/cart", cartRoutes);
 router.use("/order", orderRoutes);
 router.use("/products", productRoutes);
+router.use("/reviews", reviewRoutes);
 
 export default router;

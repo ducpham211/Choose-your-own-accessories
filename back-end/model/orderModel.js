@@ -45,4 +45,17 @@ export const updateOrderPrice = async (orderId, newTotal, accessToken) => {
     throw new Error(`Supabase error: ${error.message}`);
   }
 };
+
+export const getOrdersById = async (id) => {
+  try {
+    const { data, error } = await supabase
+      .from("orders")
+      .select("*")
+      .eq("user_id", id);
+    if (error) throw new Error(error.message);
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to get order by id ${error.message}`);
+  }
+};
 //orderModel

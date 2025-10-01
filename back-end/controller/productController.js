@@ -3,7 +3,7 @@ import {
   getProductById,
   createProduct,
 } from "../model/productModel.js";
-
+import { searchProducts } from "../model/productModel.js";
 export const getProducts = async (req, res) => {
   try {
     const products = await getAllProducts();
@@ -46,4 +46,17 @@ export const createNewProduct = async (req, res) => {
   }
 };
 
-//product controller
+export const searchProductsHandler = async (req, res) => {
+  const { q } = req.query;
+  console.log(`Received search query: ${q}`);
+
+  try {
+    const products = await searchProducts(q || "");
+    console.log(`Sending products: ${JSON.stringify(products)}`);
+    res.json(products);
+  } catch (error) {
+    console.error(`Search handler error: ${error.message}`);
+    res.status(500).json({ error: error.message });
+  }
+};
+// productController.js
