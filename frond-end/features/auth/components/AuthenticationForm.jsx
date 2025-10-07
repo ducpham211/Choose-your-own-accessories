@@ -37,7 +37,7 @@ export const AuthForm = () => {
           ? "Sign up successful! Please check your email to confirm."
           : "Sign in successful!"
       );
-      navigate("/"); // 👈 Chuyển hướng sau khi đăng nhập thành công
+      navigate("/");
     } else {
       alert(`Error: ${error.message}`);
     }
@@ -98,3 +98,4 @@ export const AuthForm = () => {
 };
 
 export default AuthForm;
+// AuthenticationForm.jsx

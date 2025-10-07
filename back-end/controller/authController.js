@@ -1,6 +1,7 @@
 import { supabase } from "../config/supabase.js";
 import { getUserById } from "../model/userModel.js";
 import { getOrdersById } from "../model/orderModel.js";
+import { getUsersForChat } from "../model/userModel.js";
 export const getUser = async (req, res) => {
   try {
     const token = req.headers.authorization?.split("Bearer ")[1];
@@ -41,3 +42,14 @@ export const getUser = async (req, res) => {
     res.status(500).json({ error: `Server error: ${error.message}` });
   }
 };
+export const fetchAdmins = async (req, res) => {
+  try {
+    const currentUserId = req.userId; // Giả sử middleware getUserIdFromSession attach req.userId
+    const admins = await getUsersForChat(currentUserId);
+    console.log("Admins fetched controller:", admins);
+    res.status(200).json(admins); // Status 200 cho GET, không phải 201
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch admins" });
+  }
+};
+//controller

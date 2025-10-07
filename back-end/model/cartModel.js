@@ -42,4 +42,17 @@ export const updateCartPrice = async (cartId, newTotal, accessToken) => {
   }
 };
 
+export const getCartById = async (id) => {
+  try {
+    const { data, error } = await supabase
+      .from("carts")
+      .select("*")
+      .eq("id", id)
+      .single();
+    if (error) throw new Error(error.message);
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to get Cart by id ${error.message}`);
+  }
+};
 //cartModel

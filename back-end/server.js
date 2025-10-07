@@ -1,8 +1,14 @@
 import express from "express";
 import session from "express-session";
+import { createServer } from "http";
 import apiRoutes from "./routes/index.js";
 import cors from "cors";
+import { initSocket } from "./config/socket.js";
+
 const app = express();
+const server = createServer(app);
+initSocket(server);
+
 app.use(express.json());
 
 app.use(
@@ -28,6 +34,7 @@ app.use(
 
 app.use("/api", apiRoutes);
 
-app.listen(3000, () => {
+server.listen(3000, () => {
+  // Sử dụng server.listen
   console.log("Server running on port 3000");
 });

@@ -2,6 +2,9 @@ import {
   getAllProducts,
   getProductById,
   createProduct,
+  getShoes,
+  getShirts,
+  getAccessories,
 } from "../model/productModel.js";
 import { searchProducts } from "../model/productModel.js";
 export const getProducts = async (req, res) => {
@@ -56,6 +59,34 @@ export const searchProductsHandler = async (req, res) => {
     res.json(products);
   } catch (error) {
     console.error(`Search handler error: ${error.message}`);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const searchShoes = async (req, res) => {
+  try {
+    const shoes = await getShoes();
+    console.log("Shoes fetched : ", shoes);
+    res.status(201).json(shoes);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+export const searchShirts = async (req, res) => {
+  try {
+    const shirts = await getShirts();
+    console.log("shirts fetched : ", shirts);
+    res.status(201).json(shirts);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+export const searchAccessories = async (req, res) => {
+  try {
+    const accessories = await getAccessories();
+    console.log("accessories fetched : ", accessories);
+    res.status(201).json(accessories);
+  } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };

@@ -24,6 +24,11 @@ export const getUserIdFromSession = async (req, res, next) => {
     // Gắn user ID vào request để dùng ở các phần sau
     req.userId = user.id;
     req.accessToken = token;
+    req.user = {
+      id: user.id,
+      role: user.role,
+    };
+
     // Sau dòng req.userId = user.id;
     const { data: userRole } = await supabase
       .from("users")
@@ -37,5 +42,26 @@ export const getUserIdFromSession = async (req, res, next) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 };
+export const isAdmin = async (req, res, next) => {
+  try {
+    const { userId } = req; // Giả sử getUserIdFromSession đã gán userId vào req
+    const { data, error } = await supabase
+      .from("users")
+      .select("role")
+      .eq("id", userId)
+      .single();
 
+    if (error || !data) {
+      return res.status(401).json({ error: "User not found" });
+    }
+
+    if (data.role !== "admin") {
+      return res.status(403).json({ error: "Forbidden: Admin access only" });
+    }
+
+    next();
+  } catch (error) {
+    return res.status(500).json({ error: "Server error" });
+  }
+};
 //authMiddlewares

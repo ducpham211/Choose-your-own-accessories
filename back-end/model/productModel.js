@@ -74,3 +74,45 @@ export const searchProducts = async (query) => {
 };
 
 //productModel.js
+export const getShoes = async () => {
+  try {
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .ilike("name", "%Giày%")
+      .limit(8);
+    if (error) throw new Error(error.message);
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to create product: ${error.message}`);
+  }
+};
+
+export const getShirts = async () => {
+  try {
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .ilike("name", "%Áo%")
+      .limit(8);
+    if (error) throw new Error(error.message);
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to create product: ${error.message}`);
+  }
+};
+
+export const getAccessories = async () => {
+  try {
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .not("name", "ilike", "%Giày%")
+      .not("name", "ilike", "%Áo%")
+      .limit(8);
+    if (error) throw new Error(error.message);
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to create product: ${error.message}`);
+  }
+};

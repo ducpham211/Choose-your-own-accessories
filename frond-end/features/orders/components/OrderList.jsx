@@ -27,18 +27,15 @@ export const OrderList = () => {
 
     processCheckout();
   }, [navigate]);
-  if (loading) return <p>Processing your order...</p>;
+
+  if (loading) return <p className="order-loading">Processing your order</p>;
   if (!order) return null;
 
   return (
-    <div
-      className="order-bill"
-      style={{ padding: "20px", maxWidth: "800px", margin: "0 auto" }}
-    >
-      <h2>✅ Order Confirmed!</h2>
-      <p>Thank you for your purchase!</p>
-
-      <div>
+    <div className="order-bill">
+      <div className="order-summary">
+        <h2>Order Confirmed!</h2>
+        <p>Thank you for your purchase!</p>
         <h3>Order #{order.id}</h3>
         <p>
           <strong>Total:</strong> {order.total_price.toLocaleString()} VND
@@ -47,26 +44,16 @@ export const OrderList = () => {
         <ul>
           {order.order_items.map((item) => (
             <li key={item.id}>
-              {item.products.name} × {item.quantity} —{" "}
-              {item.products.price.toLocaleString()} VND
+              <span>
+                {item.products.name} × {item.quantity}
+              </span>
+              <span>{item.products.price.toLocaleString()} VND</span>
             </li>
           ))}
         </ul>
       </div>
 
-      <button
-        onClick={() => navigate("/")}
-        style={{
-          marginTop: "20px",
-          padding: "10px 20px",
-          backgroundColor: "#88c9a1",
-          color: "white",
-          border: "none",
-          borderRadius: "4px",
-        }}
-      >
-        Continue Shopping
-      </button>
+      <button onClick={() => navigate("/")}>Continue Shopping</button>
     </div>
   );
 };
