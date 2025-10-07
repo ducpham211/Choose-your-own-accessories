@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { fetchReviews, submitReview } from "../services/reviewApi";
 import { supabase } from "../../../src/supabaseClient";
 
-export const ReviewPage = ({ productId }) => {
+export const ReviewList = ({ productId }) => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");

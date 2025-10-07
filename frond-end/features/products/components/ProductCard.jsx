@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { fetchProductCard } from "../services/productApi";
 import { ShoppingCart, Heart, Share2 } from "lucide-react";
 import { addToCart } from "../../cart/services/cartApi";
-import { ReviewPage } from "../../review/components/reviewPage";
+import { ReviewList } from "../../review/components/ReviewList";
 export const ProductCard = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -153,7 +153,7 @@ export const ProductCard = () => {
         </div>
       </div>
       <div className="product-review-section">
-        <ReviewPage productId={id} />
+        <ReviewList productId={id} />
       </div>
     </div>
   );

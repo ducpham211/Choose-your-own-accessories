@@ -1,5 +1,5 @@
 // /src/features/chat/components/ChatModal.jsx
-import { ChatFeature } from "../chatFeatures";
+import { ChatPage } from "../pages/ChatPage";
 
 export const ChatModal = ({
   isOpen,
@@ -15,7 +15,7 @@ export const ChatModal = ({
         <button className="close-btn" onClick={onClose}>
           ×
         </button>
-        <ChatFeature
+        <ChatPage
           currentUserId={currentUserId}
           currentUserName={currentUserName}
         />

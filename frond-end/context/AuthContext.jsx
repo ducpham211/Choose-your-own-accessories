@@ -57,6 +57,19 @@ export const AuthProvider = ({ children }) => {
         password,
         options: { emailRedirectTo: "http://localhost:3000/auth/callback" },
       });
+      if (data.user) {
+        // Tự insert vào public.users từ frontend
+        await supabase.from("users").insert({
+          id: data.user.id,
+          email: email,
+          role: "customer",
+        });
+        await supabase
+          .from("carts")
+          .insert({ user_id: data.user.id })
+          .select()
+          .single();
+      }
       console.log("signUp full response:", { data, error }); // Debug
       if (error) {
         console.error("signUp error payload:", { error });
@@ -75,19 +88,7 @@ export const AuthProvider = ({ children }) => {
         email,
         password,
       });
-      if (data.user) {
-        // Tự insert vào public.users từ frontend
-        await supabase.from("users").insert({
-          id: data.user.id,
-          email: email,
-          role: "customer",
-        });
-        await supabase
-          .from("carts")
-          .insert({ user_id: data.user.id })
-          .select()
-          .single();
-      }
+
       if (error) {
         console.error("signIn error:", error.message, error);
         throw new Error(error.message);

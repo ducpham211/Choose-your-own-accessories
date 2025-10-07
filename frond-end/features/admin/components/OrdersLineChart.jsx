@@ -1,39 +1,40 @@
-// src/features/admin/components/RevenueChart.jsx
+// src/features/admin/components/OrdersLineChart.jsx
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
   Filler,
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
+import { Line } from "react-chartjs-2";
 
+// Đăng ký các thành phần
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
   Filler
 );
 
-export const RevenueChart = ({ data }) => {
+export const OrdersLineChart = ({ data }) => {
   const chartData = {
     labels: data.labels,
     datasets: [
       {
-        label: "Doanh Thu (VNĐ)",
+        label: "Số đơn hàng",
         data: data.values,
-        backgroundColor: "rgba(75, 192, 192, 0.6)",
-        borderColor: "rgba(75, 192, 192, 1)",
-        borderWidth: 2,
-        borderRadius: 4,
-        borderSkipped: false,
+        borderColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
         fill: true,
+        tension: 0.4, // Đường cong mượt
       },
     ],
   };
@@ -44,32 +45,25 @@ export const RevenueChart = ({ data }) => {
     plugins: {
       legend: {
         position: "top",
-        labels: {
-          font: { size: 14 },
-        },
       },
       title: {
         display: true,
-        text: "Doanh Thu 6 Tháng Gần Nhất",
+        text: "Xu hướng đơn hàng theo ngày (30 ngày gần nhất)",
         font: { size: 18, weight: "bold" },
       },
     },
     scales: {
       y: {
         beginAtZero: true,
-        ticks: {
-          callback: function (value) {
-            return value >= 1000000
-              ? (value / 1000000).toFixed(1) + "M"
-              : value.toLocaleString();
-          },
-          font: { size: 12 },
-        },
+        ticks: { font: { size: 12 } },
         grid: { color: "rgba(0, 0, 0, 0.1)" },
       },
       x: {
         grid: { display: false },
-        ticks: { font: { size: 12 } },
+        ticks: {
+          font: { size: 10 },
+          maxTicksLimit: 10, // Giới hạn số label trên trục x
+        },
       },
     },
     interaction: {
@@ -80,8 +74,7 @@ export const RevenueChart = ({ data }) => {
 
   return (
     <div style={{ height: "400px", width: "100%" }}>
-      <Bar data={chartData} options={options} />
+      <Line data={chartData} options={options} />
     </div>
   );
 };
-//ReveneuChart/jsx

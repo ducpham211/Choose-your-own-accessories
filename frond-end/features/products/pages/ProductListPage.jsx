@@ -1,15 +1,16 @@
-import { useState, useEffect } from "react";
-import { fetchShirts } from "../services/productApi";
+// ProductList.jsx
+import { ProductList } from "../../products/components/ProductList";
 import { Banner } from "../../shared/components/Banner";
 import { FilterNav } from "../../shared/components/FilterNav";
-import { Product } from "../../shared/components/Products";
-export const ShirtList = () => {
+import { fetchProductList } from "../services/productApi";
+import { useState, useEffect } from "react";
+export const ProductListPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetchShirts();
+        const response = await fetchProductList();
         setProducts(response);
         setLoading(false);
       } catch (error) {
@@ -23,7 +24,7 @@ export const ShirtList = () => {
     <div className="product-list-container">
       <Banner />
       <FilterNav />
-      <Product products={products} loading={loading} />
+      <ProductList products={products} loading={loading} />
     </div>
   );
 };

@@ -2,22 +2,22 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "../context/AuthContext";
 import AuthForm from "../features/auth/components/AuthenticationForm";
-import { ProductList } from "../features/products/components/ProductList";
+import { ProductListPage } from "../features/products/pages/ProductListPage";
 import { ProductCard } from "../features/products/components/ProductCard";
-import { CartList } from "../features/cart/components/CartList";
+import { CartListPage } from "../features/cart/pages/CartListPage";
 import { Header } from "../features/shared/components/Header";
 import { Footer } from "../features/shared/components/Footer";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { OrderList } from "../features/orders/components/OrderList";
-import { UserPage } from "../features/auth/components/UserPage";
-import { ChatFeature } from "../features/chat/pages/chatFeatures";
+import { OrderListPage } from "../features/orders/pages/OrderListPage";
+import { UserPage } from "../features/auth/pages/UserPage";
+import { ChatPage } from "../features/chat/pages/ChatPage";
 import { Shop } from "../features/shared/components/Shop";
 import { About } from "../features/shared/components/About";
 import { Contact } from "../features/shared/components/Contact";
-import { ShoesList } from "../features/products/components/ShoesList";
-import { AccessoriesList } from "../features/products/components/AccessoriesList";
-import { ShirtList } from "../features/products/components/ShirtList";
+import { ShoesListPage } from "../features/products/pages/ShoesListPage";
+import { AccessoriesListPage } from "../features/products/pages/AccessoriesListPage";
+import { ShirtListPage } from "../features/products/pages/ShirtListPage";
 import { AdminDashboardPage } from "../features/admin/pages/AdminDashboardPage";
 const AppContent = () => {
   const { user } = useContext(AuthContext);
@@ -26,7 +26,7 @@ const AppContent = () => {
     <>
       {user && <Header />}
       <Routes>
-        <Route path="/" element={user ? <ProductList /> : <AuthForm />} />
+        <Route path="/" element={user ? <ProductListPage /> : <AuthForm />} />
         <Route
           path="/products/:id"
           element={user ? <ProductCard /> : <AuthForm />}
@@ -34,17 +34,26 @@ const AppContent = () => {
         <Route path="/user" element={user ? <UserPage /> : <AuthForm />} />
         <Route
           path="/cart/items"
-          element={user ? <CartList /> : <AuthForm />}
+          element={user ? <CartListPage /> : <AuthForm />}
         />
-        <Route path="/checkout" element={user ? <OrderList /> : <AuthForm />} />
+        <Route
+          path="/checkout"
+          element={user ? <OrderListPage /> : <AuthForm />}
+        />
         <Route path="/shop" element={user ? <Shop /> : <AuthForm />} />
         <Route path="/about" element={user ? <About /> : <AuthForm />} />
         <Route path="/contact" element={user ? <Contact /> : <AuthForm />} />
-        <Route path="/shoes" element={user ? <ShoesList /> : <AuthForm />} />
-        <Route path="/shirts" element={user ? <ShirtList /> : <AuthForm />} />
+        <Route
+          path="/shoes"
+          element={user ? <ShoesListPage /> : <AuthForm />}
+        />
+        <Route
+          path="/shirts"
+          element={user ? <ShirtListPage /> : <AuthForm />}
+        />
         <Route
           path="/accessories"
-          element={user ? <AccessoriesList /> : <AuthForm />}
+          element={user ? <AccessoriesListPage /> : <AuthForm />}
         />
         <Route
           path="/admin"
@@ -52,7 +61,7 @@ const AppContent = () => {
         />
       </Routes>
       {user && <Footer />}
-      {user && <ChatFeature />}
+      {user && <ChatPage />}
     </>
   );
 };

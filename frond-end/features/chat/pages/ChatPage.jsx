@@ -2,9 +2,9 @@
 import React, { useState } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import { useContext } from "react";
-import { ChatWindow } from "../components/ChatWindow"; // 👈 Đảm bảo đường dẫn đúng
+import { ChatWindow } from "../components/ChatWindow";
 
-export const ChatFeature = () => {
+export const ChatPage = () => {
   const { user } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
 

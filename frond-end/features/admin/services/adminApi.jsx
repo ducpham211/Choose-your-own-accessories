@@ -21,4 +21,25 @@ export const fetchAdminStats = async () => {
     );
   }
 };
+
+export const fetchAllOrders = async () => {
+  try {
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.getSession();
+    const response = await axios.get("http://localhost:3000/api/admin/order", {
+      headers: { Authorization: `Bearer ${session.access_token}` },
+    });
+    console.log("data from admin page : ", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch admin stats:", error);
+    throw new Error(
+      `Failed to load admin data: ${
+        error.response?.data?.error || error.message
+      }`
+    );
+  }
+};
 //adminApi

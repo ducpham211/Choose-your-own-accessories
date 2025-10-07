@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { fetchAccessories } from "../services/productApi";
 import { Banner } from "../../shared/components/Banner";
 import { FilterNav } from "../../shared/components/FilterNav";
-import { Product } from "../../shared/components/Products";
-export const AccessoriesList = () => {
+import { ProductList } from "../components/ProductList";
+export const AccessoriesListPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -23,7 +23,7 @@ export const AccessoriesList = () => {
     <div className="product-list-container">
       <Banner />
       <FilterNav />
-      <Product products={products} loading={loading} />
+      <ProductList products={products} loading={loading} />
     </div>
   );
 };

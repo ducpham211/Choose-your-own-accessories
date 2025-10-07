@@ -106,7 +106,6 @@ export const Header = () => {
                 <span>Tài Khoản</span>
               </Link>
 
-              {/* Chỉ hiển thị nếu là admin */}
               {user?.role === "admin" && (
                 <Link
                   to="/admin"
