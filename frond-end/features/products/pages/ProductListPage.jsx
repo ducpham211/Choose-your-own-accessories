@@ -2,6 +2,8 @@
 import { ProductList } from "../../products/components/ProductList";
 import { Banner } from "../../shared/components/Banner";
 import { FilterNav } from "../../shared/components/FilterNav";
+import { Carousel } from "../../shared/components/Carousel";
+import { ExpandableGallery } from "../../shared/components/ExpandableGallery";
 import { fetchProductList } from "../services/productApi";
 import { useState, useEffect } from "react";
 export const ProductListPage = () => {
@@ -23,7 +25,11 @@ export const ProductListPage = () => {
   return (
     <div className="product-list-container">
       <Banner />
+      <Carousel />
+      <ExpandableGallery />
+
       <FilterNav />
+      <h2 className="product-title">Tất Cả Sản Phẩm</h2>
       <ProductList products={products} loading={loading} />
     </div>
   );

@@ -44,7 +44,7 @@ export const getUser = async (req, res) => {
 };
 export const fetchAdmins = async (req, res) => {
   try {
-    const currentUserId = req.userId; // Giả sử middleware getUserIdFromSession attach req.userId
+    const currentUserId = req.userId;
     const admins = await getUsersForChat(currentUserId);
     console.log("Admins fetched controller:", admins);
     res.status(200).json(admins); // Status 200 cho GET, không phải 201

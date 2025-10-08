@@ -1,6 +1,4 @@
 // ProductList.jsx
-import { useState, useEffect } from "react";
-import { fetchProductList } from "../services/productApi";
 import { Link } from "react-router-dom";
 export const ProductList = ({ products, loading }) => {
   if (loading) {

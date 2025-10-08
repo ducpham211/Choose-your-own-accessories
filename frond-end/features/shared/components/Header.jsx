@@ -8,11 +8,11 @@ import { Link } from "react-router-dom";
 import { SearchBar } from "../../products/components/SearchBar";
 
 export const Header = () => {
-  const navigate = useNavigate(); // 👈 PHẢI KHAI BÁO TRƯỚC useEffect
+  const navigate = useNavigate();
 
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // 👈 Thêm state loading
-  const [error, setError] = useState(null); // 👈 Thêm state error
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const { signOut } = useContext(AuthContext);
   useEffect(() => {
@@ -51,11 +51,10 @@ export const Header = () => {
   const toggleUserMenu = () => setIsUserMenuOpen(!isUserMenuOpen);
   const closeUserMenu = () => setIsUserMenuOpen(false);
 
-  // 👇 Trong lúc loading, có thể ẩn dropdown hoặc hiển thị skeleton
   if (loading) {
     return (
       <header className="header">
-        <div className="logo">Fit Zone</div>
+        <div className="logo">Academy Sports</div>
         <SearchBar />
         <nav className="nav">
           <Link to="/">Trang Chủ</Link>
@@ -74,7 +73,7 @@ export const Header = () => {
   return (
     <header className="header">
       <Link to="/" className="logo">
-        Fit Zone
+        Academy Sports
       </Link>
       <SearchBar />
       <nav className="nav">

@@ -23,6 +23,7 @@ export const ShirtListPage = () => {
     <div className="product-list-container">
       <Banner />
       <FilterNav />
+      <h2 className="product-title">Tất Cả Áo</h2>
       <ProductList products={products} loading={loading} />
     </div>
   );

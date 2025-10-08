@@ -23,6 +23,7 @@ export const AccessoriesListPage = () => {
     <div className="product-list-container">
       <Banner />
       <FilterNav />
+      <h2 className="product-title">Tất Cả Phụ Kiện</h2>
       <ProductList products={products} loading={loading} />
     </div>
   );
