@@ -1,2 +1,3 @@
-E-commerce website with MVC structure (Back-end) and Features Based Structure(Frond-end) and basic CRUD
-sequenceDiagram
+E-commerce website with MVC structure (Back-end) and Features Based Structure(Frond-end) with many modern technologies
+
+TO BE CONTINUED....
