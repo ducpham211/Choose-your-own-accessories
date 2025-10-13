@@ -6,7 +6,7 @@ import {
 } from "../services/cartApi";
 import { Link } from "react-router-dom";
 import { Trash } from "lucide-react";
-import { momoPayment } from "../../../momo/services/momoApi";
+import { momoPayment } from "../../momo/services/momoApi";
 
 export const CartList = () => {
   const [cartItems, setCartItems] = useState([]);

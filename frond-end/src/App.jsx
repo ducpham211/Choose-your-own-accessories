@@ -20,7 +20,7 @@ import { AccessoriesListPage } from "../features/products/pages/AccessoriesListP
 import { ShirtListPage } from "../features/products/pages/ShirtListPage";
 import { AdminDashboardPage } from "../features/admin/pages/AdminDashboardPage";
 import { ShippingPage } from "../features/shipping/pages/ShippingPage";
-import { MomoRedirectHandler } from "../momo/components/momoPayment";
+import { MomoPage } from "../features/momo/pages/momoPage";
 const AppContent = () => {
   const { user } = useContext(AuthContext);
 
@@ -65,7 +65,10 @@ const AppContent = () => {
           path="/order/:id"
           element={user ? <ShippingPage /> : <AuthForm />}
         />
-        <Route path="/momo-redirect" element={<MomoRedirectHandler />} />
+        <Route
+          path="/momo-redirect"
+          element={user ? <MomoPage /> : <AuthForm />}
+        />
       </Routes>
       {user && <Footer />}
       {user && <ChatPage />}

@@ -1,4 +1,4 @@
-import { supabase } from "../../src/supabaseClient";
+import { supabase } from "../../../src/supabaseClient";
 import axios from "axios";
 export const momoPayment = async (total) => {
   try {
