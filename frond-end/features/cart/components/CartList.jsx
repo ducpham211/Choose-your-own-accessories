@@ -6,6 +6,7 @@ import {
 } from "../services/cartApi";
 import { Link } from "react-router-dom";
 import { Trash } from "lucide-react";
+import { momoPayment } from "../../../momo/services/momoApi";
 
 export const CartList = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -58,9 +59,25 @@ export const CartList = () => {
     return sum + (item.products?.price * item.quantity || 0);
   }, 0);
 
-  const handlePayment = () => {
-    setSuccess("Thanh toán thành công! 🎉");
-    setTimeout(() => setSuccess(""), 3000);
+  const handlePayment = async () => {
+    try {
+      setError("");
+      const response = await momoPayment(total);
+      console.log("url of payment : ", response);
+      const { payUrl } = response;
+      if (payUrl) {
+        // Chuyển hướng đến trang thanh toán MoMo
+        window.location.href = payUrl;
+      } else {
+        throw new Error("Không nhận được liên kết thanh toán");
+      }
+    } catch (err) {
+      console.error("Lỗi thanh toán MoMo:", err);
+      setError(
+        err.response?.data?.error ||
+          "Không thể khởi tạo thanh toán. Vui lòng thử lại."
+      );
+    }
   };
 
   if (loading) {
@@ -146,19 +163,20 @@ export const CartList = () => {
               ))}
             </div>
 
-            <div className="cart-summary">
-              <p className="cart-total">
-                Tổng: {total.toLocaleString("vi-VN")} VND
-              </p>
-              <Link to="/checkout" className="cart-payment-link">
+            {cartItems.length > 0 && (
+              <div className="cart-summary">
+                <p className="cart-total">
+                  Tổng: {total.toLocaleString("vi-VN")} VND
+                </p>
                 <button onClick={handlePayment} className="cart-payment-btn">
                   💳 Thanh Toán Ngay
                 </button>
-              </Link>
-            </div>
+              </div>
+            )}
           </>
         )}
       </div>
     </div>
   );
 };
+//CartList.jsx

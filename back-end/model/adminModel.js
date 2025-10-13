@@ -187,7 +187,7 @@ export const getOrdersByDay = async () => {
       .from("orders")
       .select("created_at, status")
       .gte("created_at", startDateISO)
-      .eq("status", "completed")
+      .eq("status", "Hoàn Thành")
       .order("created_at", { ascending: true });
 
     if (error) throw new Error(error.message);
@@ -231,7 +231,7 @@ export const getRevenueByCategory = async () => {
         products!inner(category)
       `
       )
-      .eq("orders.status", "completed")
+      .eq("orders.status", "Hoàn Thành")
       .order("price", { ascending: false });
 
     if (error) throw new Error(error.message);

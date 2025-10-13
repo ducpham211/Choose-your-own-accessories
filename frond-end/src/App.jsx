@@ -19,6 +19,8 @@ import { ShoesListPage } from "../features/products/pages/ShoesListPage";
 import { AccessoriesListPage } from "../features/products/pages/AccessoriesListPage";
 import { ShirtListPage } from "../features/products/pages/ShirtListPage";
 import { AdminDashboardPage } from "../features/admin/pages/AdminDashboardPage";
+import { ShippingPage } from "../features/shipping/pages/ShippingPage";
+import { MomoRedirectHandler } from "../momo/components/momoPayment";
 const AppContent = () => {
   const { user } = useContext(AuthContext);
 
@@ -37,7 +39,7 @@ const AppContent = () => {
           element={user ? <CartListPage /> : <AuthForm />}
         />
         <Route
-          path="/checkout"
+          path="/orders"
           element={user ? <OrderListPage /> : <AuthForm />}
         />
         <Route path="/shop" element={user ? <Shop /> : <AuthForm />} />
@@ -59,6 +61,11 @@ const AppContent = () => {
           path="/admin"
           element={user ? <AdminDashboardPage /> : <AuthForm />}
         />
+        <Route
+          path="/order/:id"
+          element={user ? <ShippingPage /> : <AuthForm />}
+        />
+        <Route path="/momo-redirect" element={<MomoRedirectHandler />} />
       </Routes>
       {user && <Footer />}
       {user && <ChatPage />}

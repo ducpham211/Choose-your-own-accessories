@@ -21,7 +21,7 @@ export const createOrder = async (userId, totalPrice, accessToken) => {
     const { data, error } = await supabase
       .from("orders")
       .insert([
-        { user_id: userId, total_price: totalPrice, status: "completed" },
+        { user_id: userId, total_price: totalPrice, status: "Đang tiến hành" },
       ])
       .select()
       .single();
@@ -70,6 +70,35 @@ export const getAllOrder = async () => {
   } catch (error) {
     console.error("Error in getTopSpendingCustomers:", error);
     throw new Error(`Failed to get all orders: ${error.message}`);
+  }
+};
+
+export const updateStatusOrder = async (id, newStatus, accessToken) => {
+  const supabase = createSupabaseClient(accessToken);
+  try {
+    const { data, error } = await supabase
+      .from("orders")
+      .update({ status: newStatus })
+      .select("status")
+      .eq("id", id);
+    if (error) throw new Error(error.message);
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to get order by id ${error.message}`);
+  }
+};
+
+export const getStatusOrder = async (id) => {
+  try {
+    const { data, error } = await supabase
+      .from("orders")
+      .select("status")
+      .eq("id", id);
+    if (error) throw new Error(error.message);
+
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to get order by id ${error.message}`);
   }
 };
 //orderModel

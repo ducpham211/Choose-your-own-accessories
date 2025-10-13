@@ -40,7 +40,7 @@ export const Contact = () => {
     {
       icon: "📧",
       title: "Email",
-      content: "support@fitzone.vn",
+      content: "support@AcademySports.vn",
     },
     {
       icon: "🕒",

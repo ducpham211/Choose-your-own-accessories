@@ -1,11 +1,13 @@
-import { supabase } from "../config/supabase";
-import { createSupabaseClient } from "../utils/supabaseClient";
-export const createShipping = async (orderId, accessToken) => {
+import { supabase } from "../config/supabase.js";
+import { createSupabaseClient } from "../utils/supabaseClient.js";
+export const createShipping = async (id, accessToken) => {
   try {
     const supabase = createSupabaseClient(accessToken);
     const { data, error } = await supabase
       .from("shipping")
-      .insert([{ order_id: orderId }]);
+      .insert([{ order_id: id }])
+      .select()
+      .single();
     if (error) throw new Error(error.message);
     console.log("shipping created : ", data);
     return data;
@@ -14,13 +16,13 @@ export const createShipping = async (orderId, accessToken) => {
   }
 };
 
-export const updateStatusShipping = async (orderId, newStatus, accessToken) => {
+export const updateStatus = async (shippingId, newStatus, accessToken) => {
   try {
     const supabase = createSupabaseClient(accessToken);
     const { data, error } = await supabase
       .from("shipping")
       .update({ status: newStatus })
-      .eq("order_id", orderId)
+      .eq("order_id", shippingId)
       .select();
     if (error) throw new Error(error.message);
     console.log("status after updated : ", data);
@@ -29,26 +31,26 @@ export const updateStatusShipping = async (orderId, newStatus, accessToken) => {
     throw new Error(`Failed to update shipping : ${error.message}`);
   }
 };
+//shippingModel.jsx
 
-export const deleteShipping = async (orderId, accessToken) => {
+export const deleteShippingById = async (id, accessToken) => {
   try {
     const supabase = createSupabaseClient(accessToken);
     const { data, error } = await supabase
       .from("shipping")
       .delete()
-      .eq("order_id", orderId);
+      .eq("id", id);
     if (error) throw new Error(error.message);
   } catch (error) {
     throw new Error(`Failed to update shipping : ${error.message}`);
   }
 };
-export const getShippingOrderId = async (orderId) => {
+export const getShippingByOrderId = async (id) => {
   try {
     const { data, error } = await supabase
       .from("shipping")
       .select()
-      .eq("order_id", orderId)
-      .single();
+      .eq("order_id", id);
     if (error) throw new Error(error.message);
     console.log("get shipping by id : ", data);
     return data;
@@ -67,6 +69,7 @@ export const getAllShippings = async () => {
     console.log("get all shipping : ", data);
     return data;
   } catch (error) {
-    throw new Error(`Failed to get shipping by id : ${error.message}`);
+    throw new Error(`Failed to get all shipping : ${error.message}`);
   }
 };
+//shippingModel

@@ -64,3 +64,4 @@ export const ProductList = ({ products, loading }) => {
     </div>
   );
 };
+//ProductList.jsx

@@ -34,3 +34,4 @@ export const ProductListPage = () => {
     </div>
   );
 };
+//pages

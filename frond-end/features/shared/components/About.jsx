@@ -2,13 +2,6 @@
 import React from "react";
 
 export const About = () => {
-  const stats = [
-    { icon: "👥", value: "10,000+", label: "Khách Hàng" },
-    { icon: "🏆", value: "5+", label: "Năm Kinh Nghiệm" },
-    { icon: "📦", value: "50,000+", label: "Đơn Hàng" },
-    { icon: "⭐", value: "4.9/5", label: "Đánh Giá" },
-  ];
-
   const values = [
     {
       icon: "💎",
@@ -34,7 +27,7 @@ export const About = () => {
 
   const team = [
     {
-      name: "Nguyễn Văn A",
+      name: "Phạm Viết Đức",
       role: "CEO & Founder",
       image: "👨‍💼",
     },
@@ -70,9 +63,9 @@ export const About = () => {
         <div className="about-story-content">
           <h2 className="about-section-title">Câu Chuyện Của Chúng Tôi</h2>
           <p className="about-story-text">
-            Fit Zone được thành lập vào năm 2019 với sứ mệnh mang đến những sản
-            phẩm thể thao chất lượng cao, giúp mọi người có thể dễ dàng tiếp cận
-            và theo đuổi đam mê thể thao của mình.
+            Academy Sports được thành lập vào năm 2019 với sứ mệnh mang đến
+            những sản phẩm thể thao chất lượng cao, giúp mọi người có thể dễ
+            dàng tiếp cận và theo đuổi đam mê thể thao của mình.
           </p>
           <p className="about-story-text">
             Chúng tôi tin rằng thể thao không chỉ là hoạt động rèn luyện sức
@@ -80,22 +73,9 @@ export const About = () => {
             diện cả về thể chất lẫn tinh thần.
           </p>
           <p className="about-story-text">
-            Với đội ngũ chuyên nghiệp và tâm huyết, Fit Zone cam kết mang đến
-            trải nghiệm mua sắm tuyệt vời nhất cho khách hàng.
+            Với đội ngũ chuyên nghiệp và tâm huyết, Academy Sports cam kết mang
+            đến trải nghiệm mua sắm tuyệt vời nhất cho khách hàng.
           </p>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="about-stats">
-        <div className="stats-grid">
-          {stats.map((stat, index) => (
-            <div key={index} className="stat-card">
-              <div className="stat-icon">{stat.icon}</div>
-              <div className="stat-value">{stat.value}</div>
-              <div className="stat-label">{stat.label}</div>
-            </div>
-          ))}
         </div>
       </section>
 

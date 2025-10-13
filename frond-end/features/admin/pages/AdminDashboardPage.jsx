@@ -41,15 +41,14 @@ export const AdminDashboardPage = () => {
 
       {/* Thống kê nhanh */}
       <div className="stats-grid">
-        <StatCard title="Tổng Sản Phẩm" value={stats.totalProducts} icon="👟" />
-        <StatCard title="Tổng Người Dùng" value={stats.totalUsers} icon="👥" />
-        <StatCard title="Tổng Đơn Hàng" value={stats.totalOrders} icon="📦" />
+        <StatCard title="Tổng Sản Phẩm" value={stats.totalProducts} />
+        <StatCard title="Tổng Người Dùng" value={stats.totalUsers} />
+        <StatCard title="Tổng Đơn Hàng" value={stats.totalOrders} />
         <StatCard
           title="Tổng Doanh Thu"
           value={
             new Intl.NumberFormat("vi-VN").format(stats.totalRevenue) + " ₫"
           }
-          icon="💰"
         />
         <StatCard
           title="Doanh Thu Tháng Này"
@@ -57,7 +56,6 @@ export const AdminDashboardPage = () => {
             new Intl.NumberFormat("vi-VN").format(stats.currentMonthRevenue) +
             " ₫"
           }
-          icon="📈"
         />
       </div>
 

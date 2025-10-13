@@ -28,19 +28,20 @@ export const OrderList = () => {
     processCheckout();
   }, [navigate]);
 
-  if (loading) return <p className="order-loading">Processing your order</p>;
+  if (loading)
+    return <p className="order-loading">Đang tiến hành thanh toán ...</p>;
   if (!order) return null;
 
   return (
     <div className="order-bill">
       <div className="order-summary">
-        <h2>Order Confirmed!</h2>
-        <p>Thank you for your purchase!</p>
-        <h3>Order #{order.id}</h3>
+        <h2>Thanh toán thành công</h2>
+        <p>Cảm ơn vì sự ủng hộ của quỷ khách</p>
+        <h3>Đơn hàng #{order.id}</h3>
         <p>
-          <strong>Total:</strong> {order.total_price.toLocaleString()} VND
+          <strong>Tổng cộng :</strong> {order.total_price.toLocaleString()} VND
         </p>
-        <h4>Items:</h4>
+        <h4>Món hàng:</h4>
         <ul>
           {order.order_items.map((item) => (
             <li key={item.id}>
@@ -53,7 +54,7 @@ export const OrderList = () => {
         </ul>
       </div>
 
-      <button onClick={() => navigate("/")}>Continue Shopping</button>
+      <button onClick={() => navigate("/")}>Tiếp tục mua sắm</button>
     </div>
   );
 };

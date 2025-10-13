@@ -8,6 +8,8 @@ import {
 import { getCartByUserId } from "../model/cartModel.js";
 import { updateCartPrice } from "../model/cartModel.js";
 import { createSupabaseClient } from "../utils/supabaseClient.js";
+import { createShipping } from "../model/shippingModel.js";
+import { getOrderItems } from "../model/orderItemModel.js";
 export const getOrder = async (req, res) => {
   const { id } = req.params;
   try {
@@ -43,7 +45,7 @@ export const addOrder = async (req, res) => {
       totalAmount += Number(item.products.price) * Number(item.quantity);
     }
 
-    // ✅ 4. TẠO ORDER MỚI (không dùng lại order cũ!)
+    //  4. TẠO ORDER MỚI
     const newOrder = await createOrder(userId, totalAmount, accessToken);
     console.log("New order created:", newOrder);
     const orderId = newOrder.id;
@@ -87,11 +89,30 @@ export const addOrder = async (req, res) => {
     if (fetchError) {
       console.error("Failed to fetch order with items:", fetchError);
     }
-
+    const shipping = await createShipping(orderId, accessToken);
+    console.log("shipping created : ", shipping);
     res.status(201).json({ order: fullOrder });
   } catch (error) {
     console.error("Error creating order:", error);
     res.status(500).json({ error: error.message });
   }
 };
+
+export const getOrderItemsByOrderId = async (req, res) => {
+  const { orderId } = req.params;
+  console.log("order id : ", orderId);
+  if (!orderId) {
+    return res.status(400).json({ error: "Order ID is required" });
+  }
+
+  try {
+    const orderItems = await getOrderItems(orderId);
+    console.log("Order items fetched for order:", orderId);
+    res.status(200).json(orderItems);
+  } catch (error) {
+    console.error("Error in getOrderItemsByOrderId:", error.message);
+    res.status(500).json({ error: error.message });
+  }
+};
+
 //order controller.js

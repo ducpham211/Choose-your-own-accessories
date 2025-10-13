@@ -22,4 +22,32 @@ export const createOrderItem = async (
   }
 };
 
+export const getOrderItems = async (orderId) => {
+  try {
+    const { data: orderItemData, error } = await supabase
+      .from("order_items")
+      .select(
+        `
+        *,
+        products (
+          name,
+          image_url
+        )
+      `
+      )
+      .eq("order_id", orderId);
+    if (error) throw new Error(error.message);
+    console.log("order_items fetched : ", orderItemData);
+    const { data: shippingData, error: shippingError } = await supabase
+      .from("shipping")
+      .select("*")
+      .eq("order_id", orderId);
+
+    if (shippingError) throw new Error(shippingError.message);
+    console.log("shipping fetched : ", shippingData);
+    return { orderItemData, shipping: shippingData || null };
+  } catch (error) {
+    throw new Error(`Failed to create order item: ${error.message}`);
+  }
+};
 //orderItemModel

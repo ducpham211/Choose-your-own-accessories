@@ -44,7 +44,7 @@ export const getUserIdFromSession = async (req, res, next) => {
 };
 export const isAdmin = async (req, res, next) => {
   try {
-    const { userId } = req; // Giả sử getUserIdFromSession đã gán userId vào req
+    const { userId } = req;
     const { data, error } = await supabase
       .from("users")
       .select("role")

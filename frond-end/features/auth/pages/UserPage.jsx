@@ -49,12 +49,7 @@ export const UserPage = () => {
 
       <div className="user-info-card">
         <div className="user-info-field">
-          <label className="user-info-label">Họ và tên</label>
-          <p className="user-info-value">{user.name || "Unknown"}</p>
-        </div>
-
-        <div className="user-info-field">
-          <label className="user-info-label">Email</label>
+          <label className="user-info-label">Tên Tài Khoản</label>
           <p className="user-info-value">{user.email}</p>
         </div>
 

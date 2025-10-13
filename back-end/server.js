@@ -4,7 +4,8 @@ import { createServer } from "http";
 import apiRoutes from "./routes/index.js";
 import cors from "cors";
 import { initSocket } from "./config/socket.js";
-
+import axios from "axios";
+import crypto from "crypto";
 const app = express();
 const server = createServer(app);
 initSocket(server);
@@ -32,6 +33,7 @@ app.use(
   })
 );
 
+//
 app.use("/api", apiRoutes);
 
 server.listen(3000, () => {

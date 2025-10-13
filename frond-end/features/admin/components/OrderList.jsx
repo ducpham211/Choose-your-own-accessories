@@ -1,6 +1,7 @@
 // src/features/admin/components/OrdersList.jsx (Component mới để hiển thị danh sách orders)
 import { useState, useEffect } from "react";
 import { fetchAllOrders } from "../services/adminApi";
+import { Link } from "react-router-dom";
 
 export const OrdersList = () => {
   const [orders, setOrders] = useState([]);
@@ -59,10 +60,11 @@ export const OrdersList = () => {
               <td className="created-at">
                 {new Date(order.created_at).toLocaleDateString("vi-VN")}
               </td>
-              <td className="actions">
-                <button className="btn-view">Xem</button>
-                {/* Thêm nút khác nếu cần */}
-              </td>
+              <Link to={`/order/${order.id}`}>
+                <td className="actions">
+                  <button className="btn-view">Xem</button>
+                </td>
+              </Link>
             </tr>
           ))}
         </tbody>

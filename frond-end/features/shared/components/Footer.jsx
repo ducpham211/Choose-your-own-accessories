@@ -33,7 +33,7 @@ export const Footer = () => {
         <div className="footer-section">
           <h3>
             <Leaf size={20} style={{ marginRight: "8px", display: "inline" }} />
-            FitZone Shop
+            AcademySports
           </h3>
           <p>Chuyên cung cấp các sản phẩm thể thao đặc biệt là bóng đá.</p>
           <div className="social-links">
@@ -111,7 +111,7 @@ export const Footer = () => {
                 size={16}
                 style={{ marginRight: "8px", color: "#7fb3d3" }}
               />
-              hello@FitZone shop.vn
+              hello@AcademySports shop.vn
             </p>
           </div>
 
@@ -159,7 +159,7 @@ export const Footer = () => {
       {/* Footer Bottom */}
       <div className="footer-bottom">
         <p>
-          © 2024 FitZone Shop. Tất cả quyền được bảo lưu. |
+          © 2024 Academy Sports. Tất cả quyền được bảo lưu. |
           <Link to="/privacy" style={{ marginLeft: "8px", marginRight: "8px" }}>
             Chính sách bảo mật
           </Link>{" "}
