@@ -5,7 +5,8 @@ export const fetchProductCard = async (id) => {
     const response = await axios.get(
       `http://localhost:3000/api/products/${id}`
     );
-    return response.data.product;
+    console.log("product data : ", response.data);
+    return response.data;
   } catch (error) {
     throw new Error(`Failed to get cart product ${error.message}`);
   }

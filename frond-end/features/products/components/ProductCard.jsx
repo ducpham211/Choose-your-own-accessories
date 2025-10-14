@@ -4,9 +4,11 @@ import { fetchProductCard } from "../services/productApi";
 import { ShoppingCart, Heart, Share2 } from "lucide-react";
 import { addToCart } from "../../cart/services/cartApi";
 import { ReviewList } from "../../review/components/ReviewList";
+import { ProductList } from "./ProductList";
 export const ProductCard = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [relatedProducts, setRelatedProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [error, setError] = useState("");
@@ -32,7 +34,12 @@ export const ProductCard = () => {
       setSuccess("");
     }
   };
-
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [id]);
   useEffect(() => {
     if (!id) return;
 
@@ -40,8 +47,11 @@ export const ProductCard = () => {
       try {
         console.log("Fetching product ID:", id);
         const response = await fetchProductCard(id);
-        console.log("Product data:", response);
-        setProduct(response);
+        console.log("Full response:", response);
+
+        // ✅ Giải cấu trúc đúng: response = { product, relatedProducts }
+        setProduct(response.product);
+        setRelatedProducts(response.relatedProducts || []);
         setLoading(false);
       } catch (error) {
         console.error("Failed to fetch product:", error);
@@ -152,9 +162,36 @@ export const ProductCard = () => {
           </div>
         </div>
       </div>
+
+      {/* Reviews */}
       <div className="product-review-section">
         <ReviewList productId={id} />
       </div>
+      {/* Related Products */}
+      {relatedProducts.length > 0 && (
+        <div className="related-products-section">
+          <h3 className="related-products-title">Sản phẩm cùng danh mục</h3>
+          <div className="related-products-grid">
+            {relatedProducts.map((item) => (
+              <Link
+                key={item.id}
+                to={`/products/${item.id}`}
+                className="related-product-card"
+              >
+                <img
+                  src={item.image_url?.trim() || "/placeholder.png"}
+                  alt={item.name}
+                  className="related-product-image"
+                />
+                <h4 className="related-product-name">{item.name}</h4>
+                <p className="related-product-price">
+                  {item.price?.toLocaleString("vi-VN")} VND
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

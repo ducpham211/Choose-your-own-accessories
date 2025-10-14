@@ -5,6 +5,8 @@ import {
   getShoes,
   getShirts,
   getAccessories,
+  getRelatedProduct,
+  getCategory,
 } from "../model/productModel.js";
 import { searchProducts } from "../model/productModel.js";
 export const getProducts = async (req, res) => {
@@ -22,7 +24,8 @@ export const getProduct = async (req, res) => {
   try {
     const product = await getProductById(id);
     console.log(product);
-    res.json({ product });
+    const relatedProducts = await getRelatedProduct(product.category, id);
+    res.json({ product: product, relatedProducts: relatedProducts });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -86,6 +89,19 @@ export const searchAccessories = async (req, res) => {
     const accessories = await getAccessories();
     console.log("accessories fetched : ", accessories);
     res.status(201).json(accessories);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+export const fetchRelatedProducts = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const categoryFetched = await getCategory(id);
+    console.log("category of product : ", categoryFetched);
+    const relatedProducts = await getRelatedProduct(categoryFetched);
+    console.log("related products : ", relatedProducts);
+    res.status(200).json(relatedProducts);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

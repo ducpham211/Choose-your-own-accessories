@@ -116,3 +116,34 @@ export const getAccessories = async () => {
     throw new Error(`Failed to create product: ${error.message}`);
   }
 };
+
+export const getCategory = async (id) => {
+  try {
+    const { data, error } = await supabase
+      .from("products")
+      .select("category")
+      .eq("id", id)
+      .single();
+    if (error) throw new Error(error.message);
+    console.log("category of product : ", data);
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to create product: ${error.message}`);
+  }
+};
+
+export const getRelatedProduct = async (category) => {
+  try {
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .eq("category", category);
+
+    if (error) throw new Error(error.message);
+    console.log("related products  : ", data);
+    return data;
+  } catch (error) {
+    throw new Error(`Failed to create product: ${error.message}`);
+  }
+};
+//productModel.jsx

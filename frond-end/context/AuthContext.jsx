@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
-        options: { emailRedirectTo: "http://localhost:3000/auth/callback" },
+        options: { emailRedirectTo: "http://localhost:5173/auth/callback" },
       });
       if (data.user) {
         // Tự insert vào public.users từ frontend
@@ -117,3 +117,4 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+//AuthContexc

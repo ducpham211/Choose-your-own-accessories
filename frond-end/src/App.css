@@ -519,13 +519,6 @@ body {
 }
 /* ProductList.css */
 
-/* ===== Container ===== */
-.product-list-container {
-  min-height: 100vh;
-  padding-top: 80px;
-  background: #f8f9fa;
-}
-
 /* ===== Loading State ===== */
 .loading-container {
   display: flex;
@@ -563,6 +556,7 @@ body {
   height: 600px;
   overflow: hidden;
   background-color: #1a1a1a;
+  margin-top: 100px;
 }
 
 .banner-image-container {
@@ -897,6 +891,7 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px 60px;
+  padding-top: 30px;
 }
 
 .products-grid {
@@ -1167,6 +1162,77 @@ body {
   .product-price {
     font-size: 18px;
   }
+}
+
+.related-products-section {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid #eee;
+  background-color: #fafafa; /* Nếu muốn nền nhẹ như ảnh */
+}
+
+.related-products-title {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.related-products-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(220px, 1fr)
+  ); /* Tăng width card */
+  gap: 24px; /* Tăng khoảng cách giữa các card */
+  padding: 0 16px; /* Padding bên trái/phải để tránh dính mép */
+}
+
+.related-product-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.related-product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.related-product-image {
+  width: 100%;
+  height: 220px; /* Tăng chiều cao để hình ảnh "tràn" hơn */
+  object-fit: cover; /* Giữ tỉ lệ, cắt phần thừa → đảm bảo ảnh luôn full khung */
+  object-position: center; /* Cân bằng ảnh nếu bị cắt */
+  border-radius: 12px 12px 0 0; /* Bo góc trên */
+  background-color: #f8f9fa; /* Nền nhẹ nếu ảnh bị thiếu */
+}
+
+.related-product-name {
+  font-size: 0.95rem;
+  margin: 12px 0 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+  color: #333;
+  padding: 0 12px;
+}
+
+.related-product-price {
+  font-weight: bold;
+  color: #e74c3c;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  padding: 0 12px;
 }
 /* Modern E-commerce Decal Banner */
 .product-decal {

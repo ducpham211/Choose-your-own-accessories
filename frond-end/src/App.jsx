@@ -21,6 +21,8 @@ import { ShirtListPage } from "../features/products/pages/ShirtListPage";
 import { AdminDashboardPage } from "../features/admin/pages/AdminDashboardPage";
 import { ShippingPage } from "../features/shipping/pages/ShippingPage";
 import { MomoPage } from "../features/momo/pages/momoPage";
+import { AuthCallback } from "../features/auth/components/AuthCallback";
+import { EmailConfirmedPage } from "../features/auth/components/EmailConfirmed";
 const AppContent = () => {
   const { user } = useContext(AuthContext);
 
@@ -42,6 +44,7 @@ const AppContent = () => {
           path="/orders"
           element={user ? <OrderListPage /> : <AuthForm />}
         />
+        <Route path="/auth/callback" element={<EmailConfirmedPage />} />
         <Route path="/shop" element={user ? <Shop /> : <AuthForm />} />
         <Route path="/about" element={user ? <About /> : <AuthForm />} />
         <Route path="/contact" element={user ? <Contact /> : <AuthForm />} />
@@ -87,3 +90,4 @@ function App() {
 }
 
 export default App;
+//app.jsx
