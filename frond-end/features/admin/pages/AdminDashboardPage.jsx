@@ -14,23 +14,28 @@ export const AdminDashboardPage = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const loadStats = async () => {
-      try {
-        const data = await fetchAdminStats();
-        setStats(data);
-      } catch (err) {
-        setError(err.message);
-        if (err.message.includes("403") || err.message.includes("401")) {
-          navigate("/login");
-        }
-      } finally {
-        setLoading(false);
+  const loadStats = async () => {
+    try {
+      const data = await fetchAdminStats();
+      setStats(data);
+      setError(null);
+    } catch (err) {
+      setError(err.message);
+      if (err.message.includes("403") || err.message.includes("401")) {
+        navigate("/login");
       }
-    };
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    loadStats();
-  }, [navigate]);
+  useEffect(() => {
+    loadStats(); // Lần đầu
+
+    const interval = setInterval(loadStats, 3600000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   if (loading) return <div className="loading">Đang tải...</div>;
   if (error) return <div className="error">❌ {error}</div>;

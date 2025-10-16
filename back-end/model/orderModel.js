@@ -65,7 +65,6 @@ export const getAllOrder = async () => {
       .from("orders")
       .select("*,users(id, email)")
       .order("created_at", { ascending: false });
-    console.log("all orders : ", data);
     return data;
   } catch (error) {
     console.error("Error in getTopSpendingCustomers:", error);

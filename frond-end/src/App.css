@@ -7,165 +7,7 @@ header {
 }
 
 /* Style cho AuthForm */
-.auth-form {
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  justify-content: center;
-  max-width: 400px;
-  margin: 30px auto;
-  padding: 25px;
-  background-color: #ffe4e1; /* Hồng pastel thuần */
-  border-radius: 15px;
-  box-shadow: 0 6px 15px rgba(199, 21, 133, 0.2);
-  border: 2px solid #ff9999;
-  animation: fadeIn 0.5s ease-in;
-}
-
-.auth-form h2 {
-  align-self: center;
-  color: #2c3e50; /* Xanh đậm gần đen */
-  font-weight: 700;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-}
-
-.auth-form form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.auth-form .input-wrapper {
-  position: relative; /* Để định vị icon Eye/EyeOff */
-  display: flex;
-  align-items: center;
-}
-
-.auth-form input {
-  padding: 12px 15px;
-  font-size: 16px;
-  border: 2px solid #ff9999;
-  border-radius: 10px;
-  background-color: #ffffff;
-  color: #2c3e50;
-  transition: all 0.3s ease;
-  width: 100%;
-  padding-right: 40px;
-}
-
-.auth-form input:focus {
-  outline: none;
-  border-color: #c71585;
-  box-shadow: 0 0 10px rgba(199, 21, 133, 0.4);
-  transform: scale(1.02);
-}
-
-.auth-form .toggle-password {
-  position: absolute;
-  right: 10px;
-  cursor: pointer;
-  color: #c71585; /* Đỏ hồng đậm */
-  transition: color 0.3s ease;
-}
-
-.auth-form .toggle-password:hover {
-  color: #db7093; /* Hồng nhạt khi hover */
-}
-
-.auth-form button {
-  padding: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #ffffff;
-  background-color: #c71585;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.auth-form button::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-50%) skewX(45deg);
-  transition: left 0.5s ease;
-}
-
-.auth-form button:hover {
-  background-color: #db7093;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(199, 21, 133, 0.3);
-}
-
-.auth-form button:hover::after {
-  left: 100%;
-}
-
-.auth-form .toggle-button {
-  align-items: center;
-  margin-top: 15px;
-  background: none;
-  border: none;
-  color: #c71585;
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 5px;
-}
-
-.auth-form .toggle-button:hover {
-  color: #ffffff;
-  background-color: #db7093;
-  transform: scale(1.05);
-}
-
-.auth-form .user-info {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  color: #2c3e50;
-  font-weight: 500;
-}
-
-.auth-form .user-info button {
-  background-color: #ff9999;
-  padding: 10px 20px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.auth-form .user-info button:hover {
-  background-color: #db7093;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(199, 21, 133, 0.3);
-}
-
-/* Hiệu ứng fade-in */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* AuthForm.css */
 
 /* Style cho danh sách sản phẩm */
 ul {
@@ -203,6 +45,474 @@ body {
   overflow-x: hidden;
   zoom: 0.77;
 }
+
+/* ============================================
+   CSS Variables
+   ============================================ */
+:root {
+  --primary-color: #3b82f6;
+  --primary-dark: #2563eb;
+  --primary-light: #60a5fa;
+  --secondary-color: #ffffff;
+  --text-light: #f3f4f6;
+  --text-dark: #374151;
+  --text-gray: #6b7280;
+  --background: #f9fafb;
+  --input-bg: #f3f4f6;
+  --border-color: #e5e7eb;
+  --icon-color: #9ca3af;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+/* ============================================
+   Base Styles
+   ============================================ */
+* {
+  box-sizing: border-box;
+}
+.auth-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  text-align: center;
+  position: relative;
+}
+
+/* Thêm accent line bên dưới */
+.auth-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #034fc1;
+  margin: 1rem auto 0;
+  border-radius: 2px;
+}
+
+/* Variant: Minimalist (không có accent line) */
+.auth-title.minimal {
+  margin-bottom: 2rem;
+}
+
+.auth-title.minimal::after {
+  display: none;
+}
+
+/* Variant: Dark mode */
+.auth-title.dark {
+  color: #ffffff;
+}
+
+/* Variant: With icon/emoji */
+.auth-title .icon {
+  display: inline-block;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+.auth-body {
+  font-family: "Montserrat", sans-serif;
+  background: var(--background);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  margin-top: 100px;
+}
+
+.auth-body h1 {
+  font-weight: 700;
+  font-size: 32px;
+  margin: 0 0 10px 0;
+  color: var(--text-dark);
+}
+
+.auth-body p {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.3px;
+  margin: 10px 0 20px;
+  color: var(--text-gray);
+}
+
+.auth-body a {
+  color: var(--primary-color);
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.auth-body a:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+.auth-container {
+  background-color: var(--secondary-color);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  width: 1100px; /* Reduced width slightly for better fit */
+  height: 600px;
+  max-width: 100%;
+  min-height: 550px;
+  border: 1px solid rgb(184, 184, 184);
+}
+
+/* ============================================
+   Form Containers
+   ============================================ */
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+  left: 0;
+  width: 40%;
+  z-index: 2;
+}
+
+/* CORRECTED: Set left to 0 and initial z-index to 1 */
+.sign-up-container {
+  left: 0;
+  width: 40%;
+  opacity: 0;
+  z-index: 1;
+}
+
+/* CORRECTED: Transform value updated for 40%/60% split */
+/* This moves the container right by 60% of parent width (150% of its own 40% width) */
+.auth-container.right-panel-active .sign-in-container {
+  transform: translateX(150%);
+}
+
+.auth-container.right-panel-active .sign-up-container {
+  transform: translateX(150%);
+  opacity: 1;
+  z-index: 5;
+  animation: show 0.6s;
+}
+
+@keyframes show {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+/* ============================================
+   Form Styles
+   ============================================ */
+.form-container form {
+  background-color: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 50px;
+  height: 100%;
+  text-align: center;
+}
+
+.form-container h1 {
+  margin-bottom: 5px;
+}
+
+.form-container p {
+  margin-bottom: 25px;
+}
+
+/* ============================================
+   Input Styles
+   ============================================ */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  margin: 8px 0;
+}
+
+.form-container input {
+  background-color: var(--input-bg);
+  border: 2px solid transparent;
+  border-radius: 10px;
+  padding: 14px 15px 14px 45px;
+  width: 100%;
+  font-size: 14px;
+  font-family: "Montserrat", sans-serif;
+  transition: all 0.3s ease;
+}
+
+.form-container input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background-color: var(--secondary-color);
+}
+
+.form-container input::placeholder {
+  color: var(--icon-color);
+}
+
+.input-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--icon-color);
+  pointer-events: none;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--icon-color);
+  transition: color 0.3s ease;
+  background: none;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-password:hover {
+  color: var(--text-dark);
+}
+
+/* ============================================
+   Button Styles
+   ============================================ */
+.form-button,
+.ghost-button {
+  border-radius: 25px;
+  border: 2px solid var(--primary-color);
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 14px 50px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 10px;
+}
+
+.form-button:hover {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.form-button:active {
+  transform: translateY(0);
+}
+
+.form-button:focus {
+  outline: none;
+}
+
+.ghost-button {
+  background-color: transparent;
+  border-color: var(--secondary-color);
+  color: var(--secondary-color);
+}
+
+.ghost-button:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.forgot-password {
+  display: block;
+  margin: 15px 0 10px;
+  font-size: 13px;
+}
+
+/* ============================================
+   Overlay Styles
+   ============================================ */
+/* CORRECTED: Initial position and width for 40%/60% split */
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 40%;
+  width: 60%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+/* CORRECTED: Transform value updated for 40%/60% split */
+/* This moves the overlay left by 40% of parent width (-66.667% of its own 60% width) */
+.auth-container.right-panel-active .overlay-container {
+  transform: translateX(-66.667%);
+}
+
+.overlay {
+  background: linear-gradient(
+    135deg,
+    var(--primary-color) 0%,
+    var(--primary-light) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 0;
+  color: var(--text-light);
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.auth-container.right-panel-active .overlay {
+  transform: translateX(50%);
+}
+
+.overlay-panel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 50px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-panel h1 {
+  color: var(--secondary-color);
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+.overlay-panel p {
+  color: var(--text-light);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.overlay-left {
+  transform: translateX(-20%);
+}
+
+.auth-container.right-panel-active .overlay-left {
+  transform: translateX(0);
+}
+
+.overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.auth-container.right-panel-active .overlay-right {
+  transform: translateX(20%);
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+@media (max-width: 768px) {
+  .auth-container {
+    width: 100%;
+    min-height: 600px;
+    height: auto;
+  }
+
+  .form-container form {
+    padding: 30px;
+  }
+
+  .overlay-panel {
+    padding: 0 30px;
+  }
+
+  .overlay-panel h1 {
+    font-size: 28px;
+  }
+
+  .form-button,
+  .ghost-button {
+    padding: 12px 40px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .auth-body {
+    padding: 10px;
+  }
+
+  .auth-container {
+    min-height: 500px;
+  }
+
+  .form-container {
+    width: 100% !important;
+  }
+
+  .sign-in-container,
+  .sign-up-container {
+    width: 100%;
+  }
+
+  .overlay-container {
+    display: none;
+  }
+
+  .auth-container.right-panel-active .sign-up-container {
+    transform: translateX(0);
+  }
+
+  .auth-container.right-panel-active .sign-in-container {
+    transform: translateX(0);
+    opacity: 0;
+    z-index: 1;
+  }
+
+  .form-container form {
+    padding: 20px;
+  }
+
+  .auth-body h1 {
+    font-size: 26px;
+  }
+
+  .form-button,
+  .ghost-button {
+    padding: 12px 35px;
+  }
+}
+
 /* UserPage.css */
 
 .user-page-container {

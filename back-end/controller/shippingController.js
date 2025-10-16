@@ -72,7 +72,7 @@ export const updateStatusShipping = async (req, res) => {
     } else {
       const statusOrder = await updateStatusOrder(
         id,
-        "Hoàn thành",
+        "Hoàn Thành",
         accessToken
       );
       console.log(

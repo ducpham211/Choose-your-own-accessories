@@ -25,6 +25,7 @@ ChartJS.register(
 );
 
 export const OrdersLineChart = ({ data }) => {
+  console.log("📈 Dữ liệu nhận được trong OrdersLineChart:", data);
   const chartData = {
     labels: data.labels,
     datasets: [
@@ -55,14 +56,19 @@ export const OrdersLineChart = ({ data }) => {
     scales: {
       y: {
         beginAtZero: true,
-        ticks: { font: { size: 12 } },
+        suggestedMax: 5,
+        ticks: {
+          font: { size: 12 },
+          stepSize: 1,
+          precision: 0,
+        },
         grid: { color: "rgba(0, 0, 0, 0.1)" },
       },
       x: {
         grid: { display: false },
         ticks: {
           font: { size: 10 },
-          maxTicksLimit: 10, // Giới hạn số label trên trục x
+          maxTicksLimit: 30, // Giới hạn số label trên trục x
         },
       },
     },
