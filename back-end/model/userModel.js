@@ -1,4 +1,5 @@
 import { supabase } from "../config/supabase.js";
+import { createSupabaseClient } from "../utils/supabaseClient.js";
 
 export const getUserById = async (id) => {
   try {
@@ -14,9 +15,7 @@ export const getUserById = async (id) => {
   }
 };
 
-//userModel
-
-export const getUsersForChat = async (currentUserRole, currentUserId) => {
+export const getUsersForChat = async (currentUserRole) => {
   try {
     let query = supabase.from("users").select("id, email");
 
@@ -35,3 +34,24 @@ export const getUsersForChat = async (currentUserRole, currentUserId) => {
     throw new Error("Failed to fetch users");
   }
 };
+
+export const updateUserInfor = async (id, fullName, address, accessToken) => {
+  const supabase = createSupabaseClient(accessToken);
+  console.log("UID from token:", id);
+  console.log("full_name : ", fullName);
+  console.log("address : ", address);
+  try {
+    const { data, error } = await supabase
+      .from("users")
+      .update({ full_name: fullName, address: address })
+      .eq("id", id)
+      .select();
+    if (error) throw new Error(error.message);
+    console.log("updated users data : ", data);
+    return data;
+  } catch (error) {
+    console.error("Failed to update users:", error.message);
+    throw new Error("Failed to update users");
+  }
+};
+//userModel

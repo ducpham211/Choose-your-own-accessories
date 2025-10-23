@@ -1,7 +1,11 @@
 // Contact.jsx
 import React, { useState } from "react";
-
+import { TextType } from "../../Shop/components/TextType";
+import { SplitText } from "../../Shop/components/SplitText";
 export const Contact = () => {
+  const handleAnimationComplete = () => {
+    console.log("All letters have animated!");
+  };
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -53,10 +57,31 @@ export const Contact = () => {
     <div className="contact-container">
       {/* Hero */}
       <section className="contact-hero">
-        <h1 className="contact-hero-title">Liên Hệ Với Chúng Tôi</h1>
-        <p className="contact-hero-subtitle">
-          Chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7
-        </p>
+        <div>
+          <SplitText
+            text="Liên hệ với chúng tôi"
+            className="text-2xl font-semibold text-center"
+            delay={100}
+            duration={0.6}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.1}
+            rootMargin="-100px"
+            textAlign="center"
+            onLetterAnimationComplete={handleAnimationComplete}
+          />
+        </div>
+        <div>
+          <TextType
+            text={["Luôn hỗ trợ mọi lúc mọi nơi"]}
+            typingSpeed={75}
+            pauseDuration={1500}
+            showCursor={true}
+            cursorCharacter="|"
+          />
+        </div>
       </section>
 
       {/* Contact Info Cards */}

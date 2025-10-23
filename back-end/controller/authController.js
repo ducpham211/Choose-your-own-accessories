@@ -34,6 +34,8 @@ export const getUser = async (req, res) => {
         id: dbUser.id,
         email: dbUser.email,
         role: dbUser.role,
+        full_name: dbUser.full_name,
+        address: dbUser.address,
         totalAmounts,
         totalOrders,
       },

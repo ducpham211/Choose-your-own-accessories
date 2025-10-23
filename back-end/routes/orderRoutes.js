@@ -2,6 +2,7 @@ import express from "express";
 import {
   getOrderItemsByOrderId,
   addOrder,
+  getOrderByUserId,
 } from "../controller/orderController.js";
 import {
   getUserIdFromSession,
@@ -11,5 +12,6 @@ import {
 const router = express.Router();
 
 router.get("/:orderId", getUserIdFromSession, isAdmin, getOrderItemsByOrderId);
+router.get("/", getUserIdFromSession, getOrderByUserId);
 router.post("", getUserIdFromSession, addOrder);
 export default router;

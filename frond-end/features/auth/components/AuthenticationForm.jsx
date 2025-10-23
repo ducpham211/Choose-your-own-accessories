@@ -65,133 +65,139 @@ export const AuthForm = () => {
   };
 
   return (
-    <div className="auth-body">
-      <h1 className="auth-title">Welcome To Academy Sports</h1>
-      <div
-        className={`auth-container ${
-          isSignUpActive ? "right-panel-active" : ""
-        }`}
-      >
-        {/* Sign Up Form */}
-        <div className="form-container sign-up-container">
-          <form onSubmit={handleSubmit}>
-            <h1>Sign Up</h1>
-            <p>Sign up to start making a shopping!</p>
+    <div className="auth-body slide-in-from-top">
+      <div className="auth-body">
+        <h1 className="auth-title">Welcome To Academy Sports</h1>
+        <div
+          className={`auth-container ${
+            isSignUpActive ? "right-panel-active" : ""
+          }`}
+        >
+          {/* Sign Up Form */}
+          <div className="form-container sign-up-container">
+            <form onSubmit={handleSubmit}>
+              <h1>Sign Up</h1>
+              <p>Sign up to start making a shopping!</p>
 
-            <div className="input-wrapper">
-              <User className="input-icon" size={18} />
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
+              <div className="input-wrapper">
+                <User className="input-icon" size={18} />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
 
-            <div className="input-wrapper">
-              <Lock className="input-icon" size={18} />
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              <span
-                className="toggle-password"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-              </span>
-            </div>
+              <div className="input-wrapper">
+                <Lock className="input-icon" size={18} />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <span
+                  className="toggle-password"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </span>
+              </div>
 
-            <div className="input-wrapper">
-              <Lock className="input-icon" size={18} />
-              <input
-                type={showConfirmPassword ? "text" : "password"}
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
-              />
-              <span
-                className="toggle-password"
-                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              >
-                {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-              </span>
-            </div>
+              <div className="input-wrapper">
+                <Lock className="input-icon" size={18} />
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  placeholder="Confirm Password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
+                />
+                <span
+                  className="toggle-password"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                >
+                  {showConfirmPassword ? (
+                    <EyeOff size={20} />
+                  ) : (
+                    <Eye size={20} />
+                  )}
+                </span>
+              </div>
 
-            <button className="form-button" type="submit">
-              Sign Up
-            </button>
-          </form>
-        </div>
-
-        {/* Sign In Form */}
-        <div className="form-container sign-in-container">
-          <form onSubmit={handleSubmit}>
-            <h1>Sign In</h1>
-            <p>Welcome back! Please login to your account</p>
-
-            <div className="input-wrapper">
-              <User className="input-icon" size={18} />
-              <input
-                type="email"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-
-            <div className="input-wrapper">
-              <Lock className="input-icon" size={18} />
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              <span
-                className="toggle-password"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-              </span>
-            </div>
-
-            <a href="#" className="forgot-password">
-              Forgot your password?
-            </a>
-
-            <button className="form-button" type="submit">
-              Sign In
-            </button>
-          </form>
-        </div>
-
-        {/* Overlay Panels */}
-        <div className="overlay-container">
-          <div className="overlay">
-            <div className="overlay-panel overlay-left">
-              <h1>Welcome Back!</h1>
-              <p>
-                To keep connected with us please login with your personal info
-              </p>
-              <button className="ghost-button" onClick={handleSignInClick}>
-                Sign In
-              </button>
-            </div>
-
-            <div className="overlay-panel overlay-right">
-              <h1>New here?</h1>
-              <p>Then Sign Up and Start Shopping!</p>
-              <button className="ghost-button" onClick={handleSignUpClick}>
+              <button className="form-button" type="submit">
                 Sign Up
               </button>
+            </form>
+          </div>
+
+          {/* Sign In Form */}
+          <div className="form-container sign-in-container">
+            <form onSubmit={handleSubmit}>
+              <h1>Sign In</h1>
+              <p>Welcome back! Please login to your account</p>
+
+              <div className="input-wrapper">
+                <User className="input-icon" size={18} />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="input-wrapper">
+                <Lock className="input-icon" size={18} />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                <span
+                  className="toggle-password"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </span>
+              </div>
+
+              <a href="#" className="forgot-password">
+                Forgot your password?
+              </a>
+
+              <button className="form-button" type="submit">
+                Sign In
+              </button>
+            </form>
+          </div>
+
+          {/* Overlay Panels */}
+          <div className="overlay-container">
+            <div className="overlay">
+              <div className="overlay-panel overlay-left">
+                <h1>Welcome Back!</h1>
+                <p>
+                  To keep connected with us please login with your personal info
+                </p>
+                <button className="ghost-button" onClick={handleSignInClick}>
+                  Sign In
+                </button>
+              </div>
+
+              <div className="overlay-panel overlay-right">
+                <h1>New here?</h1>
+                <p>Then Sign Up and Start Shopping!</p>
+                <button className="ghost-button" onClick={handleSignUpClick}>
+                  Sign Up
+                </button>
+              </div>
             </div>
           </div>
         </div>

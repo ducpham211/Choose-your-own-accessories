@@ -10,12 +10,13 @@ import { updateCartPrice } from "../model/cartModel.js";
 import { createSupabaseClient } from "../utils/supabaseClient.js";
 import { createShipping } from "../model/shippingModel.js";
 import { getOrderItems } from "../model/orderItemModel.js";
-export const getOrder = async (req, res) => {
-  const { id } = req.params;
+
+export const getOrderByUserId = async (req, res) => {
+  const userId = req.user.id;
+  console.log("id of order : ", userId);
   try {
-    console.log("id of order : ", id);
-    const order = await getOrderById(id);
-    res.status(201).json({ order });
+    const order = await getOrderById(userId);
+    res.status(201).json(order);
   } catch (error) {
     res.status(500).json({ error: `Server error: ${error.message}` });
   }

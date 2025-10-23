@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
         data: { session },
         error,
       } = await supabase.auth.getSession();
-      console.log("Session object:", session); // Debug
+      console.log("Session object:", session);
       if (error) {
         console.error("getSession error:", error.message, error);
         throw new Error(`Cannot get session: ${error.message}`);
@@ -58,7 +58,6 @@ export const AuthProvider = ({ children }) => {
         options: { emailRedirectTo: "http://localhost:5173/auth/callback" },
       });
       if (data.user) {
-        // Tự insert vào public.users từ frontend
         await supabase.from("users").insert({
           id: data.user.id,
           email: email,

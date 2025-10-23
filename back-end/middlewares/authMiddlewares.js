@@ -21,7 +21,6 @@ export const getUserIdFromSession = async (req, res, next) => {
       return res.status(401).json({ error: "Invalid or expired token" });
     }
 
-    // Gắn user ID vào request để dùng ở các phần sau
     req.userId = user.id;
     req.accessToken = token;
     req.user = {
@@ -29,7 +28,6 @@ export const getUserIdFromSession = async (req, res, next) => {
       role: user.role,
     };
 
-    // Sau dòng req.userId = user.id;
     const { data: userRole } = await supabase
       .from("users")
       .select("role")

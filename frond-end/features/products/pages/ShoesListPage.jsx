@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { fetchShoes } from "../services/productApi";
-import { Banner } from "../../shared/components/Banner";
-import { FilterNav } from "../../shared/components/FilterNav";
+import { Banner } from "../../shared/Banner";
+import { FilterNav } from "../../shared/FilterNav";
 import { ProductList } from "../components/ProductList";
+import { useNavigate } from "react-router-dom";
 export const ShoesListPage = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -19,6 +21,12 @@ export const ShoesListPage = () => {
     };
     fetchProduct();
   }, []);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [navigate]);
   return (
     <div className="product-list-container">
       <Banner />

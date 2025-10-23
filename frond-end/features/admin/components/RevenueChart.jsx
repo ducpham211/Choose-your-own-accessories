@@ -45,7 +45,7 @@ export const RevenueChart = ({ data }) => {
       legend: {
         position: "top",
         labels: {
-          font: { size: 14 },
+          font: { size: 15 },
         },
       },
       title: {
@@ -63,13 +63,13 @@ export const RevenueChart = ({ data }) => {
               ? (value / 1000000).toFixed(1) + "M"
               : value.toLocaleString();
           },
-          font: { size: 12 },
+          font: { size: 15 },
         },
         grid: { color: "rgba(0, 0, 0, 0.1)" },
       },
       x: {
         grid: { display: false },
-        ticks: { font: { size: 12 } },
+        ticks: { font: { size: 15 } },
       },
     },
     interaction: {

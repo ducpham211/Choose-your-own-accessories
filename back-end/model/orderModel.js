@@ -6,8 +6,7 @@ export const getOrderById = async (id) => {
     const { data, error } = await supabase
       .from("orders")
       .select("*")
-      .eq("user_id", id)
-      .maybeSingle();
+      .eq("user_id", id);
     if (error) throw new Error(error.message);
     return data;
   } catch (error) {

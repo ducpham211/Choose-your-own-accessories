@@ -1,8 +1,4 @@
-import {
-  getCartByUserId,
-  updateCartPrice,
-  getCartById,
-} from "../model/cartModel.js";
+import { getCartByUserId, updateCartPrice } from "../model/cartModel.js";
 import {
   createCartItem,
   getCartItemByCartId,

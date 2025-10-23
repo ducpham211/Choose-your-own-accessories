@@ -35,7 +35,7 @@ export const ReviewList = ({ productId }) => {
         console.log("Fetched reviews:", data);
         setReviews(data);
       } catch (err) {
-        setError("Không thể tải đánh giá");
+        setError("Bạn cần đăng nhập để đánh giá / xem đánh giá");
       } finally {
         setLoading(false);
       }

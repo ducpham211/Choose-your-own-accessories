@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { fetchAccessories } from "../services/productApi";
-import { Banner } from "../../shared/components/Banner";
-import { FilterNav } from "../../shared/components/FilterNav";
+import { Banner } from "../../shared/Banner";
+import { FilterNav } from "../../shared/FilterNav";
 import { ProductList } from "../components/ProductList";
+import { useNavigate } from "react-router-dom";
 export const AccessoriesListPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -19,6 +21,12 @@ export const AccessoriesListPage = () => {
     };
     fetchProduct();
   }, []);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [navigate]);
   return (
     <div className="product-list-container">
       <Banner />

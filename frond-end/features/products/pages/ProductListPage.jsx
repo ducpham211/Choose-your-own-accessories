@@ -1,14 +1,16 @@
 // ProductList.jsx
 import { ProductList } from "../../products/components/ProductList";
-import { Banner } from "../../shared/components/Banner";
-import { FilterNav } from "../../shared/components/FilterNav";
-import { Carousel } from "../../shared/components/Carousel";
-import { ExpandableGallery } from "../../shared/components/ExpandableGallery";
+import { Banner } from "../../shared/Banner";
+import { FilterNav } from "../../shared/FilterNav";
+import { Carousel } from "../../shared/Carousel";
+import { ExpandableGallery } from "../../shared/ExpandableGallery";
 import { fetchProductList } from "../services/productApi";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 export const ProductListPage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -22,6 +24,12 @@ export const ProductListPage = () => {
     };
     fetchProduct();
   }, []);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [navigate]);
   return (
     <div className="product-list-container">
       <Banner />

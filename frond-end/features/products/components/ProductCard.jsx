@@ -4,7 +4,6 @@ import { fetchProductCard } from "../services/productApi";
 import { ShoppingCart, Heart, Share2 } from "lucide-react";
 import { addToCart } from "../../cart/services/cartApi";
 import { ReviewList } from "../../review/components/ReviewList";
-import { ProductList } from "./ProductList";
 export const ProductCard = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);

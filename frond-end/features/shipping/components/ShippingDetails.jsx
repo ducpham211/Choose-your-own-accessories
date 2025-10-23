@@ -35,7 +35,12 @@ export const ShippingDetails = () => {
       loadItems();
     }
   }, [id]);
-
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [id]);
   const handleStatusChange = async (e) => {
     if (!shipping) return;
 

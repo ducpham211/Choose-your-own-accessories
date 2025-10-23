@@ -12,9 +12,6 @@ const SUPABASE_KEY = process.env.SUPABASE_KEY;
  */
 export const createSupabaseClient = (accessToken = null) => {
   const options = {};
-
-  /* Nếu có token(để xác thực id của người dùng) -> gắn vào header Authorization cho mọi request -> gửi đến supabase để xác thực, vì một số
-hàm cần auth.uid() = user.id */
   if (accessToken) {
     options.global = {
       headers: {

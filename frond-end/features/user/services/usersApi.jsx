@@ -1,5 +1,6 @@
 import axios from "axios";
 import { supabase } from "../../../src/supabaseClient";
+import { data } from "react-router-dom";
 export const getUserInfo = async () => {
   try {
     const {
@@ -15,12 +16,14 @@ export const getUserInfo = async () => {
     const response = await axios.get("http://localhost:3000/api/auth/user", {
       headers: { Authorization: `Bearer ${session.access_token}` },
     });
+    console.log("data from user api : ", response.data.user);
+
     return response.data.user;
   } catch (error) {
     throw new Error(`Failed to get user info: ${error.message}`);
   }
 };
-export const updateUser = async (id, fullName, address) => {
+export const updateUser = async (fullName, address) => {
   try {
     const {
       data: { session },
@@ -32,16 +35,17 @@ export const updateUser = async (id, fullName, address) => {
       throw new Error(`Cannot get session: ${error.message}`);
     }
     if (!session) throw new Error("Please log in");
-    const response = await axios.get(
-      `http://localhost:3000/api/auth/user/${id}`,
+    const response = await axios.put(
+      "http://localhost:3000/api/auth/user",
       { full_name: fullName, address },
       {
         headers: { Authorization: `Bearer ${session.access_token}` },
       }
     );
-    consolo.log("data updated from frond end : ", response.data);
+    console.log("data updated from frond end : ", response.data);
     return response.data;
   } catch (error) {
-    throw new Error(`Failed to get user info: ${error.message}`);
+    throw new Error(`Failed to update user info: ${error.message}`);
   }
 };
+//usersApi
