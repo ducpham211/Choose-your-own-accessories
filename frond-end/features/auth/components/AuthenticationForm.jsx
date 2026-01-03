@@ -41,7 +41,6 @@ export const AuthForm = () => {
           : "Sign in successful!"
       );
       navigate("/");
-      // Clear fields after successful action
       setEmail("");
       setPassword("");
       setConfirmPassword("");
@@ -73,7 +72,7 @@ export const AuthForm = () => {
             isSignUpActive ? "right-panel-active" : ""
           }`}
         >
-          {/* Sign Up Form */}
+
           <div className="form-container sign-up-container">
             <form onSubmit={handleSubmit}>
               <h1>Sign Up</h1>

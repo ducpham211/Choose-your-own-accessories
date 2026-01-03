@@ -10,7 +10,7 @@ export const ChatWindow = ({ currentUserId, currentUserName }) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const socketRef = useRef(null);
+  const socketRef = useRef(null); // lưu kết nối socket 
   const messagesEndRef = useRef(null);
 
   // Auto-scroll
@@ -26,7 +26,7 @@ export const ChatWindow = ({ currentUserId, currentUserName }) => {
       // Trong handleSubmit
       socketRef.current.emit("send-message", {
         message: input.trim(),
-        senderId: currentUserId, // 👈 thêm để biết ai gửi
+        senderId: currentUserId,
       });
       setInput("");
     },
@@ -47,21 +47,21 @@ export const ChatWindow = ({ currentUserId, currentUserName }) => {
           return;
         }
 
-        // 👇 1. Fetch history TRƯỚC khi kết nối socket
+        //  1. Fetch history TRƯỚC khi kết nối socket
         const history = await fetchChatHistory();
         setMessages(history || []);
 
-        // 👇 2. Kết nối socket SAU khi đã có history
+        //  2. Kết nối socket SAU khi đã có history
         const socket = io(SOCKET_URL, {
-          auth: { token: session.access_token },
+          auth: { token: session.access_token }, // xác thực user
           transports: ["websocket"],
         });
 
-        socketRef.current = socket;
-        socket.emit("join-chat");
+        socketRef.current = socket; // lưu lại kết nối socket 
+        socket.emit("join-chat");// phát (emit) một sự kiện , server lắng nghe và xác nhận rằng user này đã sẵn sàng nhận tin nhắn
 
-        // 👇 3. Chỉ lắng nghe tin nhắn MỚI từ socket
-        socket.on("receive-message", (msg) => {
+        //  3. Chỉ lắng nghe tin nhắn MỚI từ socket
+        socket.on("receive-message", (msg) => { // đắng kí một sự kiện lắng nghe, sẵn sàng nhận tin nhắn  
           setMessages((prev) => {
             // 👉 Tránh duplicate: kiểm tra xem msg.id đã tồn tại chưa
             if (prev.some((m) => m.id === msg.id)) return prev;
@@ -89,7 +89,7 @@ export const ChatWindow = ({ currentUserId, currentUserName }) => {
     };
 
     initSocket();
-  }, []); // 👈 Dependency array trống: chỉ chạy 1 lần
+  }, []); //  Dependency array trống: chỉ chạy 1 lần
 
   return (
     <div className="chat-window">

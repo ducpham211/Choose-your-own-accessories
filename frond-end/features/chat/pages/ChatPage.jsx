@@ -40,4 +40,4 @@ export const ChatPage = () => {
     </>
   );
 };
-//ChatFeature.jsx
+//ChatPage.jsx

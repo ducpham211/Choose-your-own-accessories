@@ -4,7 +4,7 @@ import { supabase } from "../config/supabase.js";
 import { createSupabaseClient } from "../utils/supabaseClient.js";
 // messageModel.js
 export const createMessage = async (senderId, message, accessToken) => {
-  console.log("📥 [DB] createMessage called with:", {
+  console.log(" [DB] createMessage called with:", {
     senderId,
     message,
   });
@@ -21,14 +21,14 @@ export const createMessage = async (senderId, message, accessToken) => {
       .single();
 
     if (error) {
-      console.error("❌ [DB] Insert error:", error);
+      console.error(" [DB] Insert error:", error);
       throw new Error(error.message);
     }
 
-    console.log("✅ [DB] Message inserted:", data);
+    console.log(" [DB] Message inserted:", data);
     return data;
   } catch (error) {
-    console.error("💥 [DB] createMessage failed:", error);
+    console.error(" [DB] createMessage failed:", error);
     throw new Error(`Failed to create message: ${error.message}`);
   }
 };
@@ -57,7 +57,7 @@ export const getChatHistory = async () => {
       createdAt: msg.created_at,
     }));
   } catch (error) {
-    console.error("💥 getChatHistory failed:", error);
+    console.error(" getChatHistory failed:", error);
     throw new Error(`Failed to get chat history: ${error.message || error}`);
   }
 };

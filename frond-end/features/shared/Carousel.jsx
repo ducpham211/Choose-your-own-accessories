@@ -1,4 +1,4 @@
-// ImageCarousel.jsx
+//carousel
 import React, { useState } from "react";
 
 export const Carousel = () => {

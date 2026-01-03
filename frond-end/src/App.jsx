@@ -53,7 +53,6 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
-// Nội dung ứng dụng
 const AppContent = () => {
   const { user, loading } = useContext(AuthContext);
 
@@ -190,18 +189,15 @@ const AppContent = () => {
         }
       />
 
-      {/* ===== Trang xác thực ===== */}
       <Route path="/login" element={<AuthForm mode="login" />} />
       <Route path="/register" element={<AuthForm mode="register" />} />
       <Route path="/auth/callback" element={<EmailConfirmedPage />} />
 
-      {/* Redirect 404 */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 };
 
-// App root
 function App() {
   return (
     <AuthProvider>

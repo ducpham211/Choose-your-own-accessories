@@ -15,7 +15,6 @@ export const initSocket = (server) => {
     },
   });
 
-  // Middleware auth cho socket
   io.use(async (socket, next) => {
     const token = socket.handshake.auth.token;
     if (!token) return next(new Error("Authentication error: No token"));
@@ -33,16 +32,20 @@ export const initSocket = (server) => {
     }
   });
 
-  // Event handlers
   io.on("connection", (socket) => {
     console.log(`User connected: ${socket.userId}`);
     onlineUsers.set(socket.userId, socket);
 
-    // Xóa logic join-chat cũ
     socket.on("join-chat", () => {
-      socket.join("support-room"); // 👈 room cố định
+      socket.join("support-room");
       console.log(`${socket.userId} joined support-room`);
     });
+    //     2. Quản lý Phòng (Room) 🚪
+    // Đây là ứng dụng thực tế của khái niệm "Room" bạn đã nêu trong báo cáo .
+
+    // socket.on("join-chat", () => { ... }): Khi client phát sự kiện join-chat.
+
+    // socket.join("support-room");: Server sẽ thêm socket (client) này vào một phòng có tên là "support-room".
 
     socket.on("send-message", async ({ message }) => {
       if (!message || typeof message !== "string" || !message.trim()) {
@@ -67,8 +70,7 @@ export const initSocket = (server) => {
           createdAt: savedMessage.created_at,
         };
 
-        // Gửi cho toàn bộ room
-        io.to("support-room").emit("receive-message", payload);
+        io.to("support-room").emit("receive-message", payload); // gửi tin nhắn đến những người ở trong phòng chat
       } catch (err) {
         console.error("Send message error:", err);
         socket.emit("error", { message: err.message });
@@ -81,6 +83,6 @@ export const initSocket = (server) => {
     });
   });
 
-  return io; // Return io nếu cần access từ nơi khác (ví dụ: để emit global events)
+  return io;
 };
 //socket.js

@@ -241,8 +241,7 @@ body {
   z-index: 1;
 }
 
-/* CORRECTED: Transform value updated for 40%/60% split */
-/* This moves the container right by 60% of parent width (150% of its own 40% width) */
+
 .auth-container.right-panel-active .sign-in-container {
   transform: translateX(150%);
 }
