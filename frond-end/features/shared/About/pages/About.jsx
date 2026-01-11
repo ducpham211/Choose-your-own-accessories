@@ -29,44 +29,6 @@ export const About = () => {
       description: "Đặt khách hàng làm trung tâm trong mọi hoạt động",
     },
   ];
-  const items = [
-    {
-      content: (
-        <div className="product-card">
-          <img src="/picture/people/CEO.jpg" alt="Phạm Viết Đức" />
-          <p>Phạm Viết Đức</p>
-          <span>CEO & Founder</span>
-        </div>
-      ),
-    },
-    {
-      content: (
-        <div className="product-card">
-          <img src="/picture/people/TeamMate-3.jpg" alt="Phạm Viết Đức" />
-          <p>Fan Mu</p>
-          <span>Developer</span>
-        </div>
-      ),
-    },
-    {
-      content: (
-        <div className="product-card">
-          <img src="/picture/people/TeamMate-1.jpg" alt="Phạm Viết Đức" />
-          <p>SV</p>
-          <span>Marketing</span>
-        </div>
-      ),
-    },
-    {
-      content: (
-        <div className="product-card">
-          <img src="/picture/people/TeamMate-2.jpg" alt="Phạm Viết Đức" />
-          <p>Sinh Viên</p>
-          <span>Manager</span>
-        </div>
-      ),
-    },
-  ];
 
   return (
     <>
@@ -189,23 +151,6 @@ export const About = () => {
         </section>
 
         {/* Team Section */}
-
-        <section className="about-team">
-          <h2 className="about-section-title">Đội Ngũ Của Chúng Tôi</h2>
-          <div style={{ height: "500px", position: "relative" }}>
-            <InfiniteScroll
-              items={items}
-              itemMinHeight={220}
-              negativeMargin="-40px"
-              isTilted={true}
-              tiltDirection="left"
-              autoplay={true}
-              autoplaySpeed={0.5}
-              autoplayDirection="down"
-              pauseOnHover={true}
-            />
-          </div>
-        </section>
       </div>
     </>
   );
