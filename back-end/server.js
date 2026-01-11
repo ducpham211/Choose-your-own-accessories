@@ -13,13 +13,25 @@ const server = createServer(app);
 // 1. Cấu hình CORS (Gộp lại làm 1, bỏ cái thừa đi)
 app.use(
   cors({
-    // Cho phép cả localhost (để test local) và sau này thêm domain Vercel
-    origin: ["http://localhost:5173", "http://localhost:3000", "*"],
+    origin: function (origin, callback) {
+      const allowedOrigins = [
+        "http://localhost:5173", // Cho phép chạy local
+        "http://localhost:3000",
+        process.env.CLIENT_URL, // Cho phép link Vercel (lấy từ biến môi trường)
+      ];
+
+      // Cho phép request không có origin (như mobile app hoặc postman) hoặc nằm trong whitelist
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        console.log("Blocked by CORS:", origin); // Log ra để biết ai bị chặn
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
+    credentials: true, // Quan trọng: Cho phép cookie/session đi qua
   })
 );
-
 app.use(express.json());
 
 // 2. Cấu hình Session

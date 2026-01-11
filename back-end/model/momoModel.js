@@ -63,3 +63,4 @@ export const createMomoPayment = async (paymentData) => {
     throw new Error(`MoMo API error: ${error.message}`);
   }
 };
+//model/momoModel.js
