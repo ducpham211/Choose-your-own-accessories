@@ -12,9 +12,12 @@ export const getUserInfo = async () => {
       throw new Error(`Cannot get session: ${error.message}`);
     }
     if (!session) throw new Error("Please log in");
-    const response = await axios.get("http://localhost:3000/api/auth/user", {
-      headers: { Authorization: `Bearer ${session.access_token}` },
-    });
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_URL}/api/auth/user`,
+      {
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      }
+    );
     return response.data.user;
   } catch (error) {
     throw new Error(`Failed to get user info: ${error.message}`);
@@ -32,14 +35,14 @@ export const updateUser = async (id, fullName, address) => {
       throw new Error(`Cannot get session: ${error.message}`);
     }
     if (!session) throw new Error("Please log in");
-    const response = await axios.get(
-      `http://localhost:3000/api/auth/user/${id}`,
+    const response = await axios.put(
+      `${import.meta.env.VITE_API_URL}/api/auth/user/${id}`,
       { full_name: fullName, address },
       {
         headers: { Authorization: `Bearer ${session.access_token}` },
       }
     );
-    consolo.log("data updated from frond end : ", response.data);
+    console.log("data updated from frond end : ", response.data);
     return response.data;
   } catch (error) {
     throw new Error(`Failed to get user info: ${error.message}`);

@@ -13,9 +13,12 @@ export const fetchCart = async () => {
       throw new Error(`Cannot get session: ${error.message}`);
     }
     if (!session) throw new Error("Please log in");
-    const response = await axios.get("http://localhost:3000/api/cart", {
-      headers: { Authorization: `Bearer ${session.access_token}` },
-    });
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_URL}/api/cart`,
+      {
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("fetchCart unexpected error:", error.message, error);
@@ -35,9 +38,12 @@ export const fetchCartItems = async () => {
       throw new Error(`Cannot get session: ${error.message}`);
     }
     if (!session) throw new Error("Please log in");
-    const response = await axios.get("http://localhost:3000/api/cart/items", {
-      headers: { Authorization: `Bearer ${session.access_token}` },
-    });
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_URL}/api/cart/items`,
+      {
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      }
+    );
     return response.data;
   } catch (error) {
     console.error("fetchCart unexpected error:", error.message, error);
@@ -60,7 +66,7 @@ export const addToCart = async (productId, quantity) => {
     }
     if (!session) throw new Error("Please log in");
     const response = await axios.post(
-      "http://localhost:3000/api/cart/items",
+      `${import.meta.env.VITE_API_URL}/api/cart/items`,
       {
         product_id: productId,
         quantity,
@@ -91,7 +97,7 @@ export const removeCartItem = async (id) => {
     }
     if (!session) throw new Error("Please log in");
     const response = await axios.delete(
-      `http://localhost:3000/api/cart/items/${id}`,
+      `${import.meta.env.VITE_API_URL}/api/cart/items/${id}`,
       { headers: { Authorization: `Bearer ${session.access_token}` } }
     );
     return response.data;
@@ -120,7 +126,7 @@ export const updateCartQuantity = async (id, newQuantity) => {
     }
     if (!session) throw new Error("Please log in");
     const response = await axios.put(
-      `http://localhost:3000/api/cart/items/${id}`,
+      `${import.meta.env.VITE_API_URL}/api/cart/items/${id}`,
       { quantity: newQuantity },
       { headers: { Authorization: `Bearer ${session.access_token}` } }
     );

@@ -7,9 +7,12 @@ export const fetchAdminStats = async () => {
       data: { session },
       error,
     } = await supabase.auth.getSession();
-    const response = await axios.get("http://localhost:3000/api/admin/stats", {
-      headers: { Authorization: `Bearer ${session.access_token}` },
-    });
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_URL}/api/admin/stats`,
+      {
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      }
+    );
     console.log("data from admin page : ", response.data);
     return response.data;
   } catch (error) {
@@ -28,9 +31,12 @@ export const fetchAllOrders = async () => {
       data: { session },
       error,
     } = await supabase.auth.getSession();
-    const response = await axios.get("http://localhost:3000/api/admin/order", {
-      headers: { Authorization: `Bearer ${session.access_token}` },
-    });
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_URL}/api/admin/order`,
+      {
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      }
+    );
     console.log("data from admin page : ", response.data);
     return response.data;
   } catch (error) {

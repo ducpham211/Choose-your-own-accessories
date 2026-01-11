@@ -1,6 +1,5 @@
 import axios from "axios";
 import { supabase } from "../../../src/supabaseClient";
-import { data } from "react-router-dom";
 export const getUserInfo = async () => {
   try {
     const {
@@ -13,9 +12,12 @@ export const getUserInfo = async () => {
       throw new Error(`Cannot get session: ${error.message}`);
     }
     if (!session) throw new Error("Please log in");
-    const response = await axios.get("http://localhost:3000/api/auth/user", {
-      headers: { Authorization: `Bearer ${session.access_token}` },
-    });
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_URL}/api/auth/user`,
+      {
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      }
+    );
     console.log("data from user api : ", response.data.user);
 
     return response.data.user;
@@ -36,7 +38,7 @@ export const updateUser = async (fullName, address) => {
     }
     if (!session) throw new Error("Please log in");
     const response = await axios.put(
-      "http://localhost:3000/api/auth/user",
+      `${import.meta.env.VITE_API_URL}/api/auth/user`,
       { full_name: fullName, address },
       {
         headers: { Authorization: `Bearer ${session.access_token}` },

@@ -13,7 +13,7 @@ export const fetchChatHistory = async () => {
     }
 
     const response = await axios.get(
-      "http://localhost:3000/api/chat/messages",
+      `${import.meta.env.VITE_API_URL}/api/chat/messages`,
       {
         headers: { Authorization: `Bearer ${session.access_token}` },
       }

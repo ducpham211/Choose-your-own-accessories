@@ -11,7 +11,7 @@ export const fetchReviews = async (productId) => {
     if (!session) throw new Error("Please log in");
 
     const response = await axios.get(
-      "http://localhost:3000/api/reviews",
+      `${import.meta.env.VITE_API_URL}/api/reviews`,
       { params: { productId } },
       { headers: { Authorization: `Bearer ${session.access_token}` } }
     );
@@ -31,7 +31,7 @@ export const submitReview = async (productId, rating, comment) => {
     if (!session) throw new Error("Bạn cần đăng nhập để đánh giá");
 
     const response = await axios.post(
-      "http://localhost:3000/api/reviews",
+      `${import.meta.env.VITE_API_URL}/api/reviews`,
       { product_id: productId, rating, comment },
       { headers: { Authorization: `Bearer ${session.access_token}` } }
     );

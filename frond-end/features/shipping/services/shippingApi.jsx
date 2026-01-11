@@ -13,7 +13,7 @@ export const fetchShipping = async (id) => {
     }
     if (!session) throw new Error("Please log in");
     const response = await axios.get(
-      `http://localhost:3000/api/shipping/${id}`,
+      `${import.meta.env.VITE_API_URL}/api/shipping/${id}`,
       {
         headers: { Authorization: `Bearer ${session.access_token}` },
       }
@@ -38,7 +38,7 @@ export const updateStatus = async (id, newStatus) => {
     }
     if (!session) throw new Error("Please log in");
     const response = await axios.put(
-      `http://localhost:3000/api/shipping/${id}`,
+      `${import.meta.env.VITE_API_URL}/api/shipping/${id}`,
       { newStatus },
       {
         headers: { Authorization: `Bearer ${session.access_token}` },

@@ -11,7 +11,7 @@ export const checkoutCart = async () => {
     if (!session) throw new Error("Please log in");
 
     const response = await axios.post(
-      "http://localhost:3000/api/order",
+      `${import.meta.env.VITE_API_URL}/api/order`,
       {},
       { headers: { Authorization: `Bearer ${session.access_token}` } }
     );
@@ -34,7 +34,7 @@ export const fetchOrderItems = async (orderId) => {
     if (!session) throw new Error("Please log in");
 
     const response = await axios.get(
-      `http://localhost:3000/api/order/${orderId}`,
+      `${import.meta.env.VITE_API_URL}/api/order/${orderId}`,
       { headers: { Authorization: `Bearer ${session.access_token}` } }
     );
     console.log("order items + shipping data : ", response.data);
@@ -56,9 +56,12 @@ export const fetchUserOrder = async () => {
     if (error) throw new Error(`Session error: ${error.message}`);
     if (!session) throw new Error("Please log in");
 
-    const response = await axios.get(`http://localhost:3000/api/order`, {
-      headers: { Authorization: `Bearer ${session.access_token}` },
-    });
+    const response = await axios.get(
+      `${import.meta.env.VITE_API_URL}/api/order`,
+      {
+        headers: { Authorization: `Bearer ${session.access_token}` },
+      }
+    );
     console.log("order items + shipping data : ", response.data);
     return response.data;
   } catch (error) {

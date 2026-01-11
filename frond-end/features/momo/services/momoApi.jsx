@@ -13,7 +13,7 @@ export const momoPayment = async (total) => {
     }
     if (!session) throw new Error("Please log in");
     const response = await axios.post(
-      "http://localhost:3000/api/payment",
+      `${import.meta.env.VITE_API_URL}/api/payment`,
       { amount: total, orderInfo: "Thanh toán đơn hàng từ giỏ hàng" },
       {
         headers: { Authorization: `Bearer ${session.access_token}` },
