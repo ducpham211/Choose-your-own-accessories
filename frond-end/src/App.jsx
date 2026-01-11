@@ -23,7 +23,7 @@ import { AccessoriesListPage } from "../features/products/pages/AccessoriesListP
 import { ShirtListPage } from "../features/products/pages/ShirtListPage";
 import { AdminDashboardPage } from "../features/admin/pages/AdminDashboardPage";
 import { ShippingPage } from "../features/shipping/pages/ShippingPage";
-import { MomoPage } from "../features/momo/pages/momoPage";
+import { MomoPage } from "../features/momo/pages/MomoPage";
 import { EmailConfirmedPage } from "../features/auth/components/EmailConfirmed";
 import { OrderListPage } from "../features/orders/pages/OrderListPage";
 
