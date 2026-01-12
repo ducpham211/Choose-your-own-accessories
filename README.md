@@ -103,4 +103,3 @@ Add project contact information or communication channels here.
 
 ---
 
-Would you like me to also add a `.env.example`, deployment instructions (Docker / Vercel / Heroku), or a `LICENSE` file?
