@@ -1,105 +1,154 @@
-# Sport-Ecommerce
+<div align="center">
+  <img src="https://socialify.git.ci/ducpham211/Choose-your-own-accessories/image?description=1&font=Inter&language=1&name=1&owner=1&pattern=Circuit%20Board&theme=Dark" alt="Sport-Ecommerce" width="640" height="320" />
+  
+  <br/>
+  
+  # 🏆 Sport-Ecommerce (Sports E-Commerce Platform)
+  
+  **Online sports shopping application with integrated automated payment, product management, and real-time support chat.**
 
-Sport-Ecommerce is a full-stack sports e-commerce application (Node.js + Express backend, React + Vite frontend). This README provides setup, environment configuration, running, and contribution instructions.
+[![Node.js](https://img.shields.io/badge/Node.js-16+-green.svg?logo=node.js)](https://nodejs.org/)
+[![Express.js](https://img.shields.io/badge/Express.js-Backend-black.svg?logo=express)](https://expressjs.com/)
+[![React](https://img.shields.io/badge/React-Vite-blue.svg?logo=react)](https://reactjs.org/)
+[![Supabase](https://img.shields.io/badge/Supabase-DB/Auth-green.svg?logo=supabase)](https://supabase.com/)
+[![MoMo](https://img.shields.io/badge/MoMo-Payment-pink.svg)](#)
 
-## Key Features
+</div>
 
-- Product management, shopping cart, and orders
-- Payment integration (Momo)
-- User authentication and admin authorization
-- Real-time chat (socket)
-- Supabase integration for selected features
+---
 
-## Architecture & Tech Stack
+## ✨ Features
 
-- Backend: Node.js, Express
-- Frontend: React, Vite
-- BaaS/DB: Supabase (or other DB depending on configuration)
-- Payment gateway: Momo
-- WebSocket: socket.io (or equivalent configuration)
+- **Product, cart, and order management**
+- **Online payment integration via MoMo Payment Gateway**
+- **User authentication and Admin authorization**
+- **Real-time live chat support via Socket.io**
+- **Supabase service integration for database management**
 
-## Repository Structure (overview)
+## 🏗 Architecture
 
-- [back-end](back-end) — Node/Express server: `server.js`, `routes/`, `controller/`, `model/`, `config/`
-- [frond-end](frond-end) — React (Vite) app: `src/`, `context/`, `components/`
-- Important config files:
-  - [back-end/server.js](back-end/server.js)
-  - [back-end/config/momo.js](back-end/config/momo.js)
-  - [back-end/config/supabase.js](back-end/config/supabase.js)
-  - [frond-end/supabaseClient.js](frond-end/supabaseClient.js)
-
-## System Requirements
-
-- Node.js >= 16
-- npm or yarn
-- Environment variables (see below)
-
-## Environment Variables (example)
-
-The backend expects several environment variables (names may vary in config files; check `back-end/config`):
-
-- `PORT` — server port (e.g. 5000)
-- `JWT_SECRET` — JWT secret for authentication
-- `SUPABASE_URL`, `SUPABASE_KEY` — Supabase credentials
-- `MOMO_PARTNER_CODE`, `MOMO_ACCESS_KEY`, `MOMO_SECRET_KEY`, `MOMO_CALLBACK` — Momo configuration
-- `DATABASE_URL` or `MONGO_URI` — if using a separate database
-
-Create a `.env` file inside `back-end/` with the required variables. Do not commit `.env` to version control.
-
-## Development Setup & Run
-
-1. Clone the repository
-
-```bash
-git clone <repo-url>
-cd "Sport-Ecommerce"
+```mermaid
+graph TD
+    Client[React + Vite Client] --> API[Node.js + Express API]
+    API --> Controller[Controllers]
+    Controller --> Model[Models / Services]
+    Model --> DB[(Database / Supabase)]
+    API --> Momo[MoMo Payment Gateway]
+    API --> WebSocket[Socket.io Real-time Chat]
 ```
 
-2. Backend
+## 🛠 Tech Stack
+
+| Layer     | Technology          |
+| :-------- | :------------------ |
+| Backend   | Node.js, Express.js |
+| Frontend  | React.js, Vite      |
+| Database  | MongoDB / Supabase  |
+| Payment   | MoMo API            |
+| Real-time | Socket.io           |
+
+## 🚀 Getting Started
+
+**Prerequisites:**
+
+- **Node.js 16+**
+- **npm or yarn**
+- **Supabase & MoMo Accounts (to set up API keys)**
+
+### Step 1: Clone the repository and set up environment
+
+```bash
+git clone https://github.com/ducpham211/Choose-your-own-accessories.git
+cd Choose-your-own-accessories
+```
+
+### Step 2: Run Backend (Node.js / Express)
 
 ```bash
 cd back-end
 npm install
-# create .env according to the Environment Variables section
-npm run dev    # or npm start depending on package.json
 ```
 
-3. Frontend
+Create a `.env` file in the `back-end/` directory with the following variables:
+
+```env
+PORT=5000
+JWT_SECRET=your_jwt_secret_key
+SUPABASE_URL=https://<project>.supabase.co
+SUPABASE_KEY=your_supabase_anon_key
+MOMO_PARTNER_CODE=your_partner_code
+MOMO_ACCESS_KEY=your_access_key
+MOMO_SECRET_KEY=your_secret_key
+MOMO_CALLBACK=your_callback_url
+DATABASE_URL=your_database_url_or_mongo_uri
+```
+
+Start the backend server:
+
+```bash
+npm run dev
+# Or npm start depending on the package.json setup
+```
+
+### Step 3: Run Frontend (React)
+
+Open a new terminal, return to the root directory, and navigate to the `frond-end` folder:
 
 ```bash
 cd frond-end
 npm install
-npm run dev
-# open the URL reported by Vite (usually http://localhost:5173)
 ```
 
-## Momo & Supabase Notes
+Configure Supabase directly in `frond-end/supabaseClient.js` or via environment variables.
 
-- Momo: fill Momo credentials in `.env` following `back-end/config/momo.js`.
-- Supabase: fill `SUPABASE_URL` and `SUPABASE_KEY` in `.env`. The frontend may use `frond-end/supabaseClient.js` for direct interactions.
+Start the user interface:
 
-## Debugging & Troubleshooting
+```bash
+npm run dev
+# Open the browser at http://localhost:5173
+```
 
-- Check backend logs in the terminal where the server runs.
-- Verify real-time/socket configuration if chat is not working (`back-end/config/socket.js` and client socket settings).
+## ⚙️ Environment Variables
 
-## Tests
+| Variable            | Description                     |
+| :------------------ | :------------------------------ |
+| `PORT`              | Backend server port             |
+| `JWT_SECRET`        | Secret key for JWT encryption   |
+| `SUPABASE_URL`      | Supabase API URL                |
+| `SUPABASE_KEY`      | Supabase API Key                |
+| `MOMO_PARTNER_CODE` | MoMo Partner Code               |
+| `MOMO_ACCESS_KEY`   | MoMo Access Key                 |
+| `MOMO_SECRET_KEY`   | MoMo Secret Key                 |
+| `DATABASE_URL`      | Database / Mongo Connection URL |
 
-There are currently no automated tests in the project. If tests are added, run them via `npm test` in the respective `back-end` or `frond-end` directories.
+## 📂 Project Structure
 
-## Contributing
+The system is divided into two main directories within the same project:
 
-- Open an issue to report bugs or request features
-- Create branches using `feature/<description>` or `fix/<description>`
-- Submit a pull request with clear change descriptions
+### 1. Backend (`/back-end`)
 
-## License
+```text
+back-end/
+├── config/         # System configurations (momo.js, supabase.js, etc.)
+├── controller/     # Business logic and data flow for APIs
+├── model/          # Schema/Database structure definitions
+├── routes/         # API Endpoint definitions
+└── server.js       # Main backend entry point file
+```
 
-Add a `LICENSE` file if necessary (e.g., MIT). I can create one for you if you prefer.
+### 2. Frontend (`/frond-end`)
 
-## Contact
+```text
+frond-end/
+├── src/
+│   ├── components/ # Shared UI Components (Buttons, Forms, etc.)
+│   ├── context/    # Global State Management (React Context)
+│   └── ...         # Other pages and components
+└── supabaseClient.js # Supabase connection file from the frontend
+```
 
-Add project contact information or communication channels here.
+## ✍️ Author
 
----
+**Pham Viet Duc** - [GitHub](https://github.com/ducpham211)
 
+- [LinkedIn](https://linkedin.com/in/viet-duc-pham)

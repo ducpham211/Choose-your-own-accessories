@@ -4,9 +4,6 @@ import { createServer } from "http";
 import apiRoutes from "./routes/index.js";
 import cors from "cors";
 import { initSocket } from "./config/socket.js";
-// import axios from "axios"; // Nếu chưa dùng thì có thể comment lại cho gọn
-// import crypto from "crypto";
-
 const app = express();
 const server = createServer(app);
 
@@ -49,9 +46,6 @@ app.use(
     },
   })
 );
-
-// 3. Route kiểm tra sức khỏe (Health Check) - QUAN TRỌNG VỚI RENDER
-// Render sẽ ping vào đây để xem server sống chưa
 app.get("/", (req, res) => {
   res.send("Server is running successfully!");
 });
@@ -62,8 +56,6 @@ app.use("/api", apiRoutes);
 // Khởi tạo Socket
 initSocket(server);
 
-// 4. SỬA PORT (QUAN TRỌNG NHẤT)
-// Lấy PORT từ Render, nếu không có thì mới dùng 3000
 const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, "0.0.0.0", () => {

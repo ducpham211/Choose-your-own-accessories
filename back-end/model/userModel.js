@@ -37,9 +37,6 @@ export const getUsersForChat = async (currentUserRole) => {
 
 export const updateUserInfor = async (id, fullName, address, accessToken) => {
   const supabase = createSupabaseClient(accessToken);
-  console.log("UID from token:", id);
-  console.log("full_name : ", fullName);
-  console.log("address : ", address);
   try {
     const { data, error } = await supabase
       .from("users")

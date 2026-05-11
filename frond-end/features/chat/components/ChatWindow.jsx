@@ -6,11 +6,11 @@ import { supabase } from "../../../src/supabaseClient";
 
 const SOCKET_URL = "http://localhost:3000";
 
-export const ChatWindow = ({ currentUserId, currentUserName }) => {
+export const ChatWindow = ({ currentUserId }) => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
-  const socketRef = useRef(null); // lưu kết nối socket 
+  const socketRef = useRef(null); // lưu kết nối socket
   const messagesEndRef = useRef(null);
 
   // Auto-scroll
@@ -30,7 +30,7 @@ export const ChatWindow = ({ currentUserId, currentUserName }) => {
       });
       setInput("");
     },
-    [input]
+    [input],
   );
 
   useEffect(() => {
@@ -57,11 +57,12 @@ export const ChatWindow = ({ currentUserId, currentUserName }) => {
           transports: ["websocket"],
         });
 
-        socketRef.current = socket; // lưu lại kết nối socket 
-        socket.emit("join-chat");// phát (emit) một sự kiện , server lắng nghe và xác nhận rằng user này đã sẵn sàng nhận tin nhắn
+        socketRef.current = socket; // lưu lại kết nối socket
+        socket.emit("join-chat"); // phát (emit) một sự kiện , server lắng nghe và xác nhận rằng user này đã sẵn sàng nhận tin nhắn
 
         //  3. Chỉ lắng nghe tin nhắn MỚI từ socket
-        socket.on("receive-message", (msg) => { // đắng kí một sự kiện lắng nghe, sẵn sàng nhận tin nhắn  
+        socket.on("receive-message", (msg) => {
+          // đắng kí một sự kiện lắng nghe, sẵn sàng nhận tin nhắn
           setMessages((prev) => {
             // 👉 Tránh duplicate: kiểm tra xem msg.id đã tồn tại chưa
             if (prev.some((m) => m.id === msg.id)) return prev;

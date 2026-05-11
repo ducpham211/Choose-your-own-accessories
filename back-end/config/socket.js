@@ -14,7 +14,6 @@ export const initSocket = (server) => {
 
   const io = new Server(server, {
     cors: {
-      // Nếu có CLIENT_URL thì dùng danh sách trên, nếu không thì tạm cho phép tất cả (*)
       origin: allowedOrigins.length > 0 ? allowedOrigins : "*",
       methods: ["GET", "POST"],
       credentials: true,
